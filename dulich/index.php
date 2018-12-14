@@ -20,14 +20,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="main.js"></script>
   <link rel="stylesheet" type="text/css" href="./public/css/btlon.css">
-</head>
+</head> 
 <body>
   <div class="container-fluid">
       <div class="header">
           <div>
               <div class="row">
                   <div class="col-sm-0">
-                  <a class="fa fa-home" href="file:///D:/xampp/htdocs/tlu/btlon.html" ></a></div>
+                  <a class="fa fa-home" href="./index.php" ></a></div>
                   <div class="col-sm-1">
                     <p><a href="mailto:Tien.vitconxauxi@gmail.com">
                         Email
@@ -61,10 +61,10 @@
                     </div>
                   </div>
                   <div class="col-sm-1">
-                    <a class="log-in" href="#">Đăng nhập</a>
+                    <a class="log-in" href="./public/view/login.php">Đăng nhập</a>
                   </div>  
                   <div class="col-sm-0">
-                    <a class="dangki" href="#">Đăng kí</a>
+                    <a class="dangki" href="./public/view/register.php">Đăng kí</a>
                   </div>
               </div>
           </div>
@@ -112,7 +112,19 @@
     <div class="col-sm-12">
          <h3>ĐIỂM ĐẾN ĐANG HOT</h3>
     </div>
-    
+    <?php
+	function getnhomtourhot()
+	{
+		global $con;
+		$result = mysqli_query($con,"select * from tour where noibat='1'");
+		$arr=array();
+		while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
+		{
+			$arr[]=$rows;	
+		}	
+		return $arr;
+	}
+    ?>
     <div class="col-sm-4">
       <div class="hot1">
         <img src="./public/images/hoian.jpg" class="img1">
@@ -143,6 +155,18 @@
     <div class="col-sm-12">
         <h3>DU LỊCH MIỀN BẮC</h3>
    </div>
+   <?php
+	function getnhomtourbac()
+	{
+		global $con;
+		$result = mysqli_query($con,"select * from tour where vungmien='Miền Bắc'");
+		$arr=array();
+		while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
+		{
+			$arr[]=$rows;	
+		}	
+		return $arr;
+	}?>
    <div class="col-sm-4">
       <div class="hot1">
         <img src="./public/images/baidinh.jpg" class="img1">
@@ -173,6 +197,18 @@
   <div class="col-sm-12">
       <h3>DU LỊCH MIỀN TRUNG</h3>
  </div>
+ <?php
+	function getnhomtourtrung()
+	{
+		global $con;
+		$result = mysqli_query($con,"select * from tour where vungmien='Miền Trung'");
+		$arr=array();
+		while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
+		{
+			$arr[]=$rows;	
+		}	
+		return $arr;
+	}?>
   <div class="col-sm-4">
       <div class="hot1">
         <img src="./public/images/nhatrang.jpg" class="img1">
@@ -203,6 +239,18 @@
   <div class="col-sm-12">
       <h3>DU LỊCH MIỀN NAM</h3>
  </div>
+ <?php
+	function getnhomtournam()
+	{
+		global $con;
+		$result = mysqli_query($con,"select * from tour where vungmien='Miền Nam'");
+		$arr=array();
+		while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
+		{
+			$arr[]=$rows;	
+		}	
+		return $arr;
+	}?>
   <div class="col-sm-4">
       <div class="hot1">
         <img src="./public/images/phuquoc.jpg" class="img1">
@@ -235,7 +283,7 @@
   <div class="footer">
     <div class="container">
       <div class="col-sm-5">
-        <a href="file:///D:/xampp/htdocs/tlu/btlon.html">DU LỊCH TRONG NƯỚC</a>
+        <a href="index.php">DU LỊCH TRONG NƯỚC</a>
         <ul>
           <p>Email:Tien.vitconxaixi@gmail.com</p>
           <p>Tư vấn: 1900 1800</p>
