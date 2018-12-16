@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./../public/css/register.css">
+  <link rel="stylesheet" type="text/css" href="./../public/css/registers.css">
   <script src="main.js"></script>
 </head>
 <body>
@@ -60,60 +60,33 @@
   </div>
 </div>
 <div class="content">
-  <div class="dangki">
-    <form>
-    <h1>Đăng kí</h1>
-    <table cellpadding="5" cellspacing="50" style="width:100%">
-    <tr>
-        <td>Họ tên <span style="color:red">(*)</span>:</td>
-        <td><input type="text" name="username" id="username" class="form-control"><span style="color:red; font-size:12px;" id="username1"></span></td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>Mật khẩu<span style="color:red">(*)</span>:</td>
-        <td><input type="password" name="password" id="password1" class="form-control"><span style="color:red; font-size:12px;" id="password11"></span></td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>Điện thoại<span style="color:red">(*)</span>:</td>
-        <td><input type="text" name="phone" id="phone" class="form-control"><span style="color:red; font-size:12px;" id="phone1"></span></td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>Email<span style="color:red">(*)</span>:</td>
-        <td><input type="text" name="email" id="email" class="form-control"><span style="color:red; font-size:12px;" id="email1"></span></td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>Địa chỉ<span style="color:red">(*)</span>:</td>
-        <td><input type="text" name="address" id="address" class="form-control"><span style="color:red; font-size:12px;" id="address1"></span></td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>Nhập Lại Mật khẩu<span style="color:red">(*)</span>:</td>
-        <td><input type="password"  id="password2" class="form-control"><span style="color:red; font-size:12px;" id="password21"></span></td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-    <td>&nbsp;</td>
-        <td>
-        <input type="submit" name="btn_register" value="Đăng Ký" class="btn btn-default">
-        <input type="reset" value="Viết lại" class="btn btn-default">
-        </td>
-    </tr>
-    </table>
+<?php
+$conn=mysqli_connect('localhost','root','','btlon');
+if(!$conn){
+    die("khong the ket noi".mysqli_connect_error());
+}
+if(isset($_POST["btn_register"])){
+  $username= mysqli_real_escape_string($conn,$_POST["username"]);
+  $password= mysqli_real_escape_string($conn,$_POST["password"]);
+  $password= mysqli_real_escape_string($conn,$_POST["confirm password"]);
+  $phone= mysqli_real_escape_string($conn,$_POST["phone"]);
+  $email= mysqli_real_escape_string($conn,$_POST["email"]);
+  $address= mysqli_real_escape_string($conn,$_POST["address"]);
+  $sql="insert into users(username,password,phone,email,address)value('$username','$password','$phone','$email','$address')";
+  $query=mysqli_query($conn,$sql);
+}
+?>
+ <div class="dangki">
+    <form method="post">
+      <h1>Đăng kí</h1>
+        <input class="t" placeholder="username" type="text" required=""  name="username" >
+        <input  class="t" placeholder="password" type="password" required="" name="password">
+        <input  class="t" placeholder="confirm password" type="password" required="" name="confirm password">
+        <input class="t" placeholder="phone" type="text" required=""  name="phone" >
+        <input class="t" placeholder="email" type="text" required=""  name="email" >
+        <input class="t" placeholder="address" type="text" required=""  name="address" >
+        <button class="t" type="submit" name="submit">Đăng kí</button>
+        <button class="ta" type="reset" name="submit">Viết lại</button>
     </form>
   </div>
 </div>

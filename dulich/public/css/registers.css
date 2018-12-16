@@ -74,3 +74,26 @@ h1{
     box-sizing: border-box;
     padding: 20px 20px 20px 60px;
 }
+.t{
+    margin: 20px 90px;
+}
+input {
+  width: 200px;
+  display:block;
+  border: none;/* đường viền chân k biên giới*/
+  padding: 9px 0;
+  border-bottom: solid 1px #0d023a;/* đường viền dưới*/
+  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);/*hiệu ứng khi di chuột tới*/
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #325de9 4%);
+  background-position: -200px 0;/*dinh vị nền*/
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+}
+input:focus{
+  box-shadow: none;
+  outline: none;
+  background-position: 0 0;
+}
+.ta{
+    margin: 22px 0px;
+}
