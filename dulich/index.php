@@ -61,10 +61,10 @@
                     </div>
                   </div>
                   <div class="col-sm-1">
-                    <a class="log-in" href="./public/view/login.php">Đăng nhập</a>
+                    <a class="log-in" href="http://localhost:8080/tlu/dulich/view/login.php">Đăng nhập</a>
                   </div>  
                   <div class="col-sm-0">
-                    <a class="dangki" href="./public/view/register.php">Đăng kí</a>
+                    <a class="dangki" href="http://localhost:8080/tlu/dulich/view/register.php">Đăng kí</a>
                   </div>
               </div>
           </div>
@@ -123,37 +123,25 @@
 			$arr[]=$rows;	
 		}	
 		return $arr;
-	}
+  }
+  $getnhomtourhot=getnhomtourhot();
+  if(isset($getnhomtourhot))foreach($getnhomtourhot as $value)
+  {
     ?>
     <div class="col-sm-4">
       <div class="hot1">
-        <img src="./public/images/hoian.jpg" class="img1">
-        <h4 class="text1">Tour Miền Trung - Đà Nẵng - Hội An</h4><span> Giá: 3,299,000đ</span>
-        <p>Khách sạn 3*</p>
-        <p>Khởi hành: Hồ Chí Minh</p>
-        <a href="#" class="more">Xem chi tiết>></a> 
+        <img src="./public/images/<?php echo $value["images"]?>" class="img1">
+        <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?></span>
+        <p><?php echo $value["khachsan"]?></p>
+        <p>Khởi hành: <?php echo $value["diemxuatphat"]?></p>
+        <a href="http://localhost:8080/tlu/dulich/view/ta.php/<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
       </div>
     </div>
-    <div class="col-sm-4">
-        <div class="hot1">
-          <img src="./public/images/danang.jpg" class="img1">
-          <h4 class="text1">Tour Đà Nẵng - Huế - Động Thiên </h4><span> Giá: 5,599,000đ</span>
-          <p>Khách sạn 3*</p>
-          <p>Khởi hành:Hồ Chí Minh</p>
-          <a href="#" class="more">Xem chi tiết>></a> 
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="hot1">
-          <img src="./public/images/a4.jpg" class="img1">
-          <h4 class="text1">Du Lịch Đà Nẵng - Bà Nà - Hội An</h4><span> Giá: 4,890,000đ</span>
-          <p>Khách sạn 3*</p>
-          <p>Khởi hành:Hà Nội</p>
-          <a href="#" class="more">Xem chi tiết>></a> 
-        </div>
-    </div>
-    <div class="col-sm-12">
-        <h3>DU LỊCH MIỀN BẮC</h3>
+  <?php
+  }
+  ?>
+  <div class="col-sm-12">
+      <h3>DU LỊCH MIỀN BẮC</h3>
    </div>
    <?php
 	function getnhomtourbac()
@@ -166,34 +154,23 @@
 			$arr[]=$rows;	
 		}	
 		return $arr;
-	}?>
+  }
+  $getnhomtourbac=getnhomtourbac();
+  if(isset($getnhomtourbac)) foreach($getnhomtourbac as $value)
+  {
+  ?>
    <div class="col-sm-4">
       <div class="hot1">
-        <img src="./public/images/baidinh.jpg" class="img1">
-        <h4 class="text1">Du Lịch Hạ Long- Chùa Bái Đính</h4><span> Giá: 6,299,000đ</span>
-        <p>Khách sạn 3*</p>
-        <p>Khởi hành:Hồ Chí Minh</p>
-        <a href="#" class="more">Xem chi tiết>></a> 
+        <img src="./public/images/<?php echo $value["images"]?>" class="img1">
+        <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?></span>
+        <p><?php echo $value["khachsan"]?></p>
+        <p>Khởi hành:<?php echo $value["diemxuatphat"]?></p>
+        <a href="http://localhost:8080/tlu/dulich/view/ta.php/<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
       </div>
   </div>
-  <div class="col-sm-4">
-      <div class="hot1">
-        <img src="./public/images/caobang.png" class="img1">
-        <h4 class="text1">Du lịch Hà Giang- Thác Bản</h4><span> Giá: 7,399,000đ</span>
-        <p>Khách sạn 3*</p>
-        <p>Khởi hành:Sài gòn</p>
-        <a href="#" class="more">Xem chi tiết>></a> 
-      </div>
-  </div>
-  <div class="col-sm-4">
-      <div class="hot1">
-        <img src="./public/images/langbac.jpg" class="img1">
-        <h4 class="text1">Du Lịch Hạ Long - Hà nội</h4><span> Giá: 7,199,000đ</span>
-        <p>Khách sạn 3*</p>
-        <p>Khởi hành:Sài gòn</p>
-        <a href="#" class="more">Xem chi tiết>></a> 
-      </div>
-  </div>
+  <?php
+  }
+  ?>
   <div class="col-sm-12">
       <h3>DU LỊCH MIỀN TRUNG</h3>
  </div>
@@ -201,41 +178,31 @@
 	function getnhomtourtrung()
 	{
 		global $con;
-		$result = mysqli_query($con,"select * from tour where vungmien='Miền Trung'");
+		$result = mysqli_query($con,"select * from tour where vungmien='Miền Trung' limit 3");
 		$arr=array();
 		while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
 		{
 			$arr[]=$rows;	
 		}	
 		return $arr;
-	}?>
+  }
+  $getnhomtourtrung=getnhomtourtrung();
+  if(isset($getnhomtourtrung))foreach($getnhomtourtrung as $value)
+  {
+  ?>
+  
   <div class="col-sm-4">
       <div class="hot1">
-        <img src="./public/images/nhatrang.jpg" class="img1">
-        <h4 class="text1">Tour Nha Trang</h4><span> Giá: 5,890,000đ</span>
-        <p>Khách sạn 3*</p>
-        <p>Khởi hành:Hà nội</p>
-        <a href="#" class="more">Xem chi tiết>></a> 
+        <img src="./public/images/<?php echo $value["images"]?>" class="img1">
+        <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?></span>
+        <p><?php echo $value["khachsan"]?></p>
+        <p>Khởi hành:<?php echo $value["diemxuatphat"]?></p>
+        <a href="http://localhost:8080/tlu/dulich/view/ta.php/<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
       </div>
   </div>
-  <div class="col-sm-4">
-      <div class="hot1">
-        <img src="./public/images/quy.jpg" class="img1">
-        <h4 class="text1">Tour Du lịch Quy Nhơn </h4><span> Giá: 5,890,000đ</span>
-        <p>Khách sạn 3*</p>
-        <p>Khởi hành:Hà Nội</p>
-        <a href="#" class="more">Xem chi tiết>></a> 
-      </div>
-  </div>
-  <div class="col-sm-4">
-      <div class="hot1">
-        <img src="./public/images/phu.jpg" class="img1">
-        <h4 class="text1">Du lịch Phú Yên </h4><span> Giá: 3,990,000đ</span>
-        <p>Khách sạn 4*</p>
-        <p>Khởi hành:Hà Nội</p>
-        <a href="#" class="more">Xem chi tiết>></a> 
-      </div>
-  </div>
+  <?php
+  }
+  ?>
   <div class="col-sm-12">
       <h3>DU LỊCH MIỀN NAM</h3>
  </div>
@@ -250,35 +217,27 @@
 			$arr[]=$rows;	
 		}	
 		return $arr;
-	}?>
+  }
+  
+  $getnhomtournam=getnhomtournam();
+  if(isset($getnhomtournam))
+  foreach($getnhomtournam as $value)
+  {
+  ?>
   <div class="col-sm-4">
       <div class="hot1">
-        <img src="./public/images/phuquoc.jpg" class="img1">
-        <h4 class="text1">Du Lịch Phú Quốc</h4><span> Giá: 3,299,000đ</span>
-        <p>Khách sạn 3*</p>
-        <p>Khởi hành:Hồ Chí Minh</p>
-        <a href="#" class="more">Xem chi tiết>></a> 
+        <img src="./public/images/<?php echo $value["images"] ?>" class="img1">
+        <h4 class="text1"><?php echo $value["nameTour"]; ?></h4><span> Giá: <?php echo $value["gia"]?></span>
+        <p><?php echo $value["khachsan"]?></p>
+        <p>Khởi hành: <?php echo $value["diemxuatphat"]?></p>
+        <a href="http://localhost:8080/tlu/dulich/view/ta.php/<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
       </div>
   </div>
-  <div class="col-sm-4">
-      <div class="hot1">
-        <img src="./public/images/ba.jpg" class="img1">
-        <h4 class="text1">Du lịch MIẾU BÀ CHÚA XỨ </h4><span> Giá: 3,099,000đ</span>
-        <p>Khách sạn 3*</p>
-        <p>Khởi hành:Hồ Chí Minh</p>
-        <a href="#" class="more">Xem chi tiết>></a> 
-      </div>
-  </div>
-  <div class="col-sm-4">
-      <div class="hot1">
-        <img src="./public/images/tay.jpg" class="img1">
-        <h4 class="text1">Du Lịch Miền Tây </h4><span> Giá: 699,000đ</span>
-        <p>Khách sạn 4*</p>
-        <p>Khởi hành:Sài gòn</p>
-        <a href="#" class="more">Xem chi tiết>></a> 
-      </div>
-  </div>
-  </div>
+  <?php
+}
+?>
+
+</div>
   </div>
   <div class="footer">
     <div class="container">
