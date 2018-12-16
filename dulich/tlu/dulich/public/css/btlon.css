@@ -61,14 +61,20 @@ h3{text-align: center; color: rgb(33, 161, 161); text-decoration: underline;}
     background-color: white;
     color: black;
 }
-h2{
-    color: red;
-    text-align: center
+.hot1{ border: 1px solid rgb(50, 16, 117);
+    border-radius: 15px;
+    margin-bottom: 10px;
+    overflow: auto;
+    float: right;
 }
-.b{
-    margin: 10px 0 10px;
-    color: rgb(12, 190, 81);
+.img1{
+    float: left;
+    width: 300px;
+    height: 150px;
+    margin-bottom: 5px;
 }
-h4{
-    color: rgb(252, 22, 22);
-}
+h4{text-align: center; }
+span{color: red;
+    float: right;}
+.more{color: navy !important;}
+p{margin-bottom: 0;}
