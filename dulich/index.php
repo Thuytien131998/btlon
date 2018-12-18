@@ -55,7 +55,7 @@
                   <div class="col-sm-3 dropdown">
                     <button class="TOUR" href="#">TOUR TRONG NƯỚC</button>
                     <div class="dropdown-content">
-                      <a href="#">Miền Bắc</a>
+                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Bắc</a>
                       <a href="#">Miền Trung</a>
                       <a href="#">Miền Nam</a>
                     </div>
@@ -66,6 +66,20 @@
                   <div class="col-sm-0">
                     <a class="dangki" href="http://localhost:8080/tlu/dulich/view/register.php">Đăng kí</a>
                   </div>
+                  <?php 
+				          if(isset($_SESSION["loged_customer"])) 
+				             {
+				          ?>
+                <a href="<?php echo $url;?>khach-hang.html"><span  class="glyphicon glyphicon-user"></span><?php echo $customer;?></a>
+				          <?php
+				            }
+				            else 
+				             {
+				             ?>
+                <a href="<?php echo $url;?>login.php">Đăng nhập</a>
+                <?php	
+			       	}
+				        ?> 
               </div>
           </div>
         </div>  
@@ -134,7 +148,7 @@
         <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?></span>
         <p><?php echo $value["khachsan"]?></p>
         <p>Khởi hành: <?php echo $value["diemxuatphat"]?></p>
-        <a href="http://localhost:8080/tlu/dulich/view/ta.php/<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
+        <a href="http://localhost:8080/tlu/dulich/view/ta.php/?id=<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
       </div>
     </div>
   <?php
@@ -165,7 +179,7 @@
         <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?></span>
         <p><?php echo $value["khachsan"]?></p>
         <p>Khởi hành:<?php echo $value["diemxuatphat"]?></p>
-        <a href="http://localhost:8080/tlu/dulich/view/ta.php/<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
+        <a href="http://localhost:8080/tlu/dulich/view/ta.php/?id=<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
       </div>
   </div>
   <?php
@@ -197,7 +211,7 @@
         <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?></span>
         <p><?php echo $value["khachsan"]?></p>
         <p>Khởi hành:<?php echo $value["diemxuatphat"]?></p>
-        <a href="http://localhost:8080/tlu/dulich/view/ta.php/<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
+        <a href="http://localhost:8080/tlu/dulich/view/ta.php/?id=<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
       </div>
   </div>
   <?php
@@ -230,7 +244,7 @@
         <h4 class="text1"><?php echo $value["nameTour"]; ?></h4><span> Giá: <?php echo $value["gia"]?></span>
         <p><?php echo $value["khachsan"]?></p>
         <p>Khởi hành: <?php echo $value["diemxuatphat"]?></p>
-        <a href="http://localhost:8080/tlu/dulich/view/ta.php/<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
+        <a href="http://localhost:8080/tlu/dulich/view/ta.php/?id=<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
       </div>
   </div>
   <?php

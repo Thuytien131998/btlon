@@ -59,6 +59,13 @@
      </div>
   </div>
 </div>
+<div class="content">
+  <form method="post">
+    <h1>Đăng nhập</h1>
+    <input class="t" placeholder="username" type="text" required=""  name="username" >
+    <input  class="t" placeholder="password" type="password" required="" name="password">
+    <button class="t" type="submit" name="submit">Đăng nhập</button>
+</div>
 <?php
 $conn=mysqli_connect('localhost','root','','btlon');
 if(!$conn){
@@ -71,20 +78,17 @@ if(isset($_POST["submit"])){
   $query=mysqli_query($conn,$sql);
   $num_row=mysqli_num_rows($query);
   if($num_row !=0){
-      echo'<a href="http://localhost:8080/tlu/dulich/index.php"/>';
+    header("Location: http://localhost:8080/tlu/dulich/index.php");
+    $_SESSION["loged_customer"]=true;
+		$_SESSION["loged_customer"]=$username;
+    die();
   }
   else{
     echo"Tên hoặc mật khẩu không đúng!";
   }
+  mysqli_close($conn);
 }
 ?>
-<div class="content">
-  <form method="post">
-    <h1>Đăng nhập</h1>
-    <input class="t" placeholder="username" type="text" required=""  name="username" >
-    <input  class="t" placeholder="password" type="password" required="" name="password">
-    <button class="t" type="submit" name="submit">Đăng nhập</button>
-</div>
 <div class="footer">
     <div class="container">
       <div class="col-sm-5">

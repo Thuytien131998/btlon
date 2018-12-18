@@ -65,27 +65,28 @@ $conn=mysqli_connect('localhost','root','','btlon');
 if(!$conn){
     die("khong the ket noi".mysqli_connect_error());
 }
-if(isset($_POST["btn_register"])){
+mysqli_set_charset($conn,"utf8");
+if(isset($_POST["submit"])){
   $username= mysqli_real_escape_string($conn,$_POST["username"]);
   $password= mysqli_real_escape_string($conn,$_POST["password"]);
-  $password= mysqli_real_escape_string($conn,$_POST["confirm password"]);
   $phone= mysqli_real_escape_string($conn,$_POST["phone"]);
   $email= mysqli_real_escape_string($conn,$_POST["email"]);
   $address= mysqli_real_escape_string($conn,$_POST["address"]);
-  $sql="insert into users(username,password,phone,email,address)value('$username','$password','$phone','$email','$address')";
+  $sql="insert into users(username,password,phone,email,address,pk)value('$username','$password','$phone','$email','$address','0')";
+  header("Location: http://localhost:8080/tlu/dulich/index.php");
   $query=mysqli_query($conn,$sql);
+  mysqli_close($conn);
 }
 ?>
  <div class="dangki">
-    <form method="post">
+    <form method="post" >
       <h1>Đăng kí</h1>
-        <input class="t" placeholder="username" type="text" required=""  name="username" >
-        <input  class="t" placeholder="password" type="password" required="" name="password">
-        <input  class="t" placeholder="confirm password" type="password" required="" name="confirm password">
-        <input class="t" placeholder="phone" type="text" required=""  name="phone" >
-        <input class="t" placeholder="email" type="text" required=""  name="email" >
-        <input class="t" placeholder="address" type="text" required=""  name="address" >
-        <button class="t" type="submit" name="submit">Đăng kí</button>
+        <input class="t" placeholder="username" type="text" required=""  name="username" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]){3,15})"title="Vui lòng nhập lại tên!">
+        <input  class="t" placeholder="password" type="password" required="" name="password" >
+        <input class="t" placeholder="phone" type="text" required=""  name="phone" pattern="([0-9]{10})"title="Vui lòng nhập đúng số điện thoại!" >
+        <input class="t" placeholder="email" type="text" required=""  name="email" pattern="([\w._%+-]+@[\w.-]+[a-zA-Z]{2,4})"title="Vui lòng nhập lại email!" >
+        <input class="t" placeholder="address" type="text" required=""  name="address" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]){3,})"title="Vui lòng nhập lại địa chỉ!">
+        <button class="t" type="submit" name="submit"  >Đăng kí</button>
         <button class="ta" type="reset" name="submit">Viết lại</button>
     </form>
   </div>

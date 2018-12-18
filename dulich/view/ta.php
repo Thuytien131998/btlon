@@ -71,9 +71,10 @@
     if(!$conn){
         die("khong the ket noi".mysqli_connect_error());
     }
+    $id=$_GET["id"];
     //thuc hien cau truy van
     mysqli_set_charset($conn,"utf8");
-    $sql = "SELECT * from tour where idTour=2";
+    $sql = "SELECT * from tour where idTour=$id";
     $result=mysqli_query($conn,$sql);
     //xu li ket qua truy van
     while($row=mysqli_fetch_assoc($result)){
