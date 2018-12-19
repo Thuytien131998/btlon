@@ -1,3 +1,13 @@
+<?php 
+  $con = mysqli_connect("localhost","root","","btlon"); //mo ra kết nối đến máy chủ
+  if (mysqli_connect_errno())
+  {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();//không thể kết nối
+  }
+  //đặt bộ kí tự máy khách mặc định là 
+  mysqli_query($con,"SET CHARACTER SET 'utf8'");
+  mysqli_query($con,"SET SESSION collation_connection ='utf8_unicode_ci'");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,15 +25,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="main.js"></script>
-  <link rel="stylesheet" type="text/css" href="./../public/css/menu.css">
+  <link rel="stylesheet" type="text/css" href="./../public/css/menu1.css">
 </head> 
 <body>
   <div class="container-fluid">
       <div class="header">
           <div>
               <div class="row">
-                  <div class="col-sm-0">
-                  <a class="fa fa-home" href="./index.php" ></a></div>
+                  <div class="col-sm-1">
+                  <a class="fa fa-home" href="http://localhost:8080/tlu/dulich/index.php" ></a></div>
                   <div class="col-sm-1">
                     <p><a href="mailto:Tien.vitconxauxi@gmail.com">
                         Email
@@ -51,9 +61,9 @@
                   <div class="col-sm-3 dropdown">
                     <button class="TOUR" href="#">TOUR TRONG NƯỚC</button>
                     <div class="dropdown-content">
-                      <a href="#">Miền Bắc</a>
-                      <a href="#">Miền Trung</a>
-                      <a href="#">Miền Nam</a>
+                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Bắc</a>
+                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Trung</a>
+                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Nam</a>
                     </div>
                   </div>
                   <div class="col-sm-1">
@@ -62,32 +72,20 @@
                   <div class="col-sm-0">
                     <a class="dangki" href="http://localhost:8080/tlu/dulich/view/register.php">Đăng kí</a>
                   </div>
-                  <?php 
-				          if(isset($_SESSION["loged_customer"])) 
-				             {
-				          ?>
-                <a href="<?php echo $url;?>khach-hang.html"><span  class="glyphicon glyphicon-user"></span><?php echo $customer;?></a>
-				          <?php
-				            }
-				            else 
-				             {
-				             ?>
-                <a href="<?php echo $url;?>login.php">Đăng nhập</a>
-                <?php	
-			       	}
-				        ?> 
               </div>
           </div>
         </div>  
   </div>
   <div class="content">
+    <div class="gallery">
+    <img src="./../public/images/tet.jpg" style="width:100%; height:600px">
+    </div>
+  <div class="container">
+  <div class="col-sm-12">
+      <h3>DU LỊCH MIỀN BẮC</h3>
+ </div>
   <?php
-   $conn=mysqli_connect('localhost','root','','btlon');
-   if(!$conn){
-       die("khong the ket noi".mysqli_connect_error());
-   }
-   mysqli_set_charset($conn,"utf8");
-   function getnhomtourbac()
+	function getnhomtour()
 	{
 		global $con;
 		$result = mysqli_query($con,"select * from tour where vungmien='Miền Bắc'");
@@ -98,27 +96,28 @@
 		}	
 		return $arr;
   }
-  if(isset($getnhomtourbac))foreach($getnhomtourbac as $value)
+  $getnhomtour=getnhomtour();
+  if(isset($getnhomtour)) foreach($getnhomtour as $value)
   {
-    ?>
-    <div class="col-sm-4">
+  ?>
+   <div class="col-sm-4">
       <div class="hot1">
-        <img src="./public/images/<?php echo $value["images"]?>" class="img1">
+        <img src="./../public/images/<?php echo $value["images"]?>" class="img1">
         <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?></span>
         <p><?php echo $value["khachsan"]?></p>
-        <p>Khởi hành: <?php echo $value["diemxuatphat"]?></p>
+        <p>Khởi hành:<?php echo $value["diemxuatphat"]?></p>
         <a href="http://localhost:8080/tlu/dulich/view/ta.php/?id=<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
       </div>
-    </div>
+  </div>
   <?php
   }
   ?>
   </div>
-
+  </div>
    <div class="footer">
     <div class="container">
       <div class="col-sm-5">
-        <a href="index.php">DU LỊCH TRONG NƯỚC</a>
+        <a href="http://localhost:8080/tlu/dulich/index.php">DU LỊCH TRONG NƯỚC</a>
         <ul>
           <p>Email:Tien.vitconxaixi@gmail.com</p>
           <p>Tư vấn: 1900 1800</p>

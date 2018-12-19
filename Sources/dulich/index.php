@@ -56,8 +56,8 @@
                     <button class="TOUR" href="#">TOUR TRONG NƯỚC</button>
                     <div class="dropdown-content">
                       <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Bắc</a>
-                      <a href="#">Miền Trung</a>
-                      <a href="#">Miền Nam</a>
+                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Trung</a>
+                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Nam</a>
                     </div>
                   </div>
                   <div class="col-sm-1">

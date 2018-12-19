@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="./public/js/bootstrap.min.css">
   <script src="./public/js/jquery-3.3.1.min.js"></script>
   <script src="./public/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="../../public/css/ta.css">
+  <link rel="stylesheet" type="text/css" href="./../public/css/dat.css">
     <script src="main.js"></script>
 </head>
 <body>
@@ -50,9 +50,9 @@
                   <div class="col-sm-3 dropdown">
                     <button class="TOUR" href="#">TOUR TRONG NƯỚC</button>
                     <div class="dropdown-content">
-                      <a href="#">Miền Bắc</a>
-                      <a href="#">Miền Trung</a>
-                      <a href="#">Miền Nam</a>
+                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Bắc</a>
+                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Trung</a>
+                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Nam</a>
                     </div>
                   </div>
                   <div class="col-sm-1">
@@ -66,32 +66,7 @@
         </div>  
 </div>
 <div class="content">
-    <?php
-    $conn=mysqli_connect('localhost','root','','btlon');
-    if(!$conn){
-        die("khong the ket noi".mysqli_connect_error());
-    }
-    $id=$_GET["id"];
-    //thuc hien cau truy van
-    mysqli_set_charset($conn,"utf8");
-    $sql = "SELECT * from tour where idTour=$id";
-    $result=mysqli_query($conn,$sql);
-    //xu li ket qua truy van
-    while($row=mysqli_fetch_assoc($result)){
-
-        echo'<h2>'.$row['nameTour'].'</h2>';
-        echo'<h5><p class="b">Ngày khởi hành:</p>'.$row['ngaykhoihanh'].'</h5>';
-        echo'<h5><p class="b">Ngày kết thúc :</p>'.$row['ngayketthuc'].'</h5>';
-        echo'<h5><p class="b">Địa điểm xuất phát:</p>'.$row['diemxuatphat'].'</h5>';
-        echo'<h5><p class="b">Xe vận chuyển :</p>'.$row['vanchuyen'].'</h5>';
-        echo'<h5>'.$row['khachsan'].'</h5>';
-        echo'<h5><p class="b">Số chỗ ngồi :</p>'.$row['sochongoi'].'</h5>';
-        echo'<img src="../../public/images/'.$row['images'].'"/>';
-        echo '<p><h4>Lịch trình:</h4>'.$row['lichtrinh'].'</p>';
-        echo '<p><h4>Ghi chú:</h4>'.$row['ghichu'].'</p>';
-    }
-    mysqli_close($conn);
-    ?>
+    
 </div>
 <div class="footer">
     <div class="container">
@@ -100,7 +75,7 @@
         <ul>
           <p>Email:Tien.vitconxaixi@gmail.com</p>
           <p>Tư vấn: 1900 1800</p>
-         <img src="../../public/images/i.png" class="a1">
+         <img src="./../public/images/i.png" class="a1">
         </ul>
       </div>
       <div class="col-sm-5">

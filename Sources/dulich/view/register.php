@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>DU LỊCH TRONG NƯỚC-login</title>
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DU LỊCH TRONG NƯỚC-registration</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
   <link rel="stylesheet" href="./public/js/bootstrap.min.css">
   <script src="./public/js/jquery-3.3.1.min.js"></script>
   <script src="./public/js/bootstrap.min.js"></script>
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./../public/css/login.css" >
+  <link rel="stylesheet" type="text/css" href="./../public/css/registers.css">
   <script src="main.js"></script>
 </head>
 <body>
@@ -48,47 +48,49 @@
       <div class="col-sm-3 dropdown">
                     <button class="TOUR" href="#">TOUR TRONG NƯỚC</button>
                     <div class="dropdown-content">
-                      <a href="#">Miền Bắc</a>
-                      <a href="#">Miền Trung</a>
-                      <a href="#">Miền Nam</a>
+                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Bắc</a>
+                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Trung</a>
+                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Nam</a>
                     </div>
                   </div>
       <div class="col-sm-0">
-                    <a class="dangki" href="http://localhost:8080/tlu/dulich/view/register.php">Đăng kí</a>
-                  </div>
+        <a class="log-in" href="http://localhost:8080/tlu/dulich/view/login.php">Đăng nhập</a>
+        </div>
      </div>
   </div>
 </div>
 <div class="content">
-  <form method="post">
-    <h1>Đăng nhập</h1>
-    <input class="t" placeholder="username" type="text" required=""  name="username" >
-    <input  class="t" placeholder="password" type="password" required="" name="password">
-    <button class="t" type="submit" name="submit">Đăng nhập</button>
-</div>
 <?php
 $conn=mysqli_connect('localhost','root','','btlon');
 if(!$conn){
     die("khong the ket noi".mysqli_connect_error());
 }
+mysqli_set_charset($conn,"utf8");
 if(isset($_POST["submit"])){
   $username= mysqli_real_escape_string($conn,$_POST["username"]);
   $password= mysqli_real_escape_string($conn,$_POST["password"]);
-  $sql="select * from users where username='$username' and password='$password'";
+  $phone= mysqli_real_escape_string($conn,$_POST["phone"]);
+  $email= mysqli_real_escape_string($conn,$_POST["email"]);
+  $address= mysqli_real_escape_string($conn,$_POST["address"]);
+  $sql="insert into users(username,password,phone,email,address,pk)value('$username','$password','$phone','$email','$address','0')";
+  header("Location: http://localhost:8080/tlu/dulich/index.php");
   $query=mysqli_query($conn,$sql);
-  $num_row=mysqli_num_rows($query);
-  if($num_row !=0){
-    header("Location: http://localhost:8080/tlu/dulich/index.php");
-    $_SESSION["loged_customer"]=true;
-		$_SESSION["loged_customer"]=$username;
-    die();
-  }
-  else{
-    echo"Tên hoặc mật khẩu không đúng!";
-  }
   mysqli_close($conn);
 }
 ?>
+ <div class="dangki">
+    <form method="post" >
+      <h1>Đăng kí</h1>
+        <input class="t" placeholder="username" type="text" required=""  name="username" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]){3,15})"title="Vui lòng nhập lại tên!">
+        <input  class="t" placeholder="password" type="password" required="" name="password" >
+        <input class="t" placeholder="phone" type="text" required=""  name="phone" pattern="([0-9]{10})"title="Vui lòng nhập đúng số điện thoại!" >
+        <input class="t" placeholder="email" type="text" required=""  name="email" pattern="([\w._%+-]+@[\w.-]+[a-zA-Z]{2,4})"title="Vui lòng nhập lại email!" >
+        <input class="t" placeholder="address" type="text" required=""  name="address" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]){3,})"title="Vui lòng nhập lại địa chỉ!">
+        <button class="t" type="submit" name="submit"  >Đăng kí</button>
+        <button class="ta" type="reset" name="submit">Viết lại</button>
+    </form>
+  </div>
+</div>
 <div class="footer">
     <div class="container">
       <div class="col-sm-5">
