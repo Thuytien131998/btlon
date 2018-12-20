@@ -71,38 +71,38 @@
     <div class="gallery">
     <img src="./../public/images/tet.jpg" style="width:100%; height:600px">
     </div>
-  <div class="container">
-  <div class="col-sm-12">
-      <h3>DU LỊCH MIỀN BẮC</h3>
- </div>
-  <?php
-	function getnhomtour()
-	{
-		global $con;
-		$result = mysqli_query($con,"select * from tour where vungmien='Miền Bắc'");
-		$arr=array();
-		while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
-		{
-			$arr[]=$rows;	
-		}	
-		return $arr;
-  }
-  $getnhomtour=getnhomtour();
-  if(isset($getnhomtour)) foreach($getnhomtour as $value)
-  {
-  ?>
-   <div class="col-sm-4">
-      <div class="hot1">
-        <img src="./../public/images/<?php echo $value["images"]?>" class="img1">
-        <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?></span>
-        <p><?php echo $value["khachsan"]?></p>
-        <p>Khởi hành:<?php echo $value["diemxuatphat"]?></p>
-        <a href="http://localhost:8080/tlu/dulich/view/ta.php/?id=<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
-      </div>
-  </div>
-  <?php
-  }
-  ?>
+    <div class="container">
+    <div class="col-sm-12">
+        <h3>DU LỊCH MIỀN BẮC</h3>
+    </div>
+      <?php
+      function getnhomtour()
+      {
+        global $con;
+        $result = mysqli_query($con,"select * from tour where vungmien='Miền Bắc'");
+        $arr=array();
+        while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
+        {
+          $arr[]=$rows;	
+        }	
+        return $arr;
+      }
+      $getnhomtour=getnhomtour();
+      if(isset($getnhomtour)) foreach($getnhomtour as $value)
+      {
+      ?>
+    <div class="col-sm-4">
+        <div class="hot1">
+          <img src="./../public/images/<?php echo $value["images"]?>" class="img1">
+          <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?></span>
+          <p><?php echo $value["khachsan"]?></p>
+          <p>Khởi hành:<?php echo $value["diemxuatphat"]?></p>
+          <a href="http://localhost:8080/tlu/dulich/view/ta.php/?id=<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
+        </div>
+    </div>
+    <?php
+    }
+    ?>
   </div>
   </div>
    <div class="footer">

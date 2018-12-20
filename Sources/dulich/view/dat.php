@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="./public/js/bootstrap.min.css">
   <script src="./public/js/jquery-3.3.1.min.js"></script>
   <script src="./public/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./../public/css/dat.css">
+  <link rel="stylesheet" type="text/css" href="./../public/css/dat1.css">
     <script src="main.js"></script>
 </head>
 <body>
@@ -63,7 +63,48 @@
         </div>  
 </div>
 <div class="content">
-    
+  <div class="don">
+  <form action="/action_page.php">
+    <div class="col-50">
+      <h3>Thông Tin</h3>
+      <label for="fname"><i class="fa fa-user"></i> Họ và tên</label>
+      <input type="text" id="fname" name="firstname" placeholder="Full name" required="">
+      <label for="email"><i class="fa fa-envelope"></i> Email</label>
+      <input type="text" id="email" name="email" placeholder="john@example.com" required="" pattern="([\w._%+-]+@[\w.-]+[a-zA-Z]{2,4})"title="Vui lòng nhập lại email!">
+      <label for="adr"><i class="fa fa-address-card-o"></i> Địa chỉ</label>
+      <input type="text" id="adr" name="address" placeholder="address" required="">
+    </div>
+    <div class="col-50">
+      <h3>Thanh toán</h3>
+      <label for="fname"><i class="fa fa-user"></i>Chủ thẻ</label>
+      <input type="text" id="NameCard" name="NameCard" placeholder="Name on Card" required="">
+      <label for="fname"><i class="fa fa-user"></i>Số thẻ tín dụng</label>
+      <input type="text" id="Creditnumber" name="Creditnumber" placeholder="Credit card number" required="" pattern="(^[1-9]{4}+-^[1-9]{4}+-^[1-9]{4}+-^[1-9]{4}$)" title="Vui lòng nhập lại số thẻ!">
+      <label for="fname"><i class="fa fa-user"></i>Năm hết hạn thẻ</label>
+      <input type="text" id="ExpYear" name="ExpYear" placeholder="Exp Year" required="">
+      <label>
+        <input type="checkbox" checked="checked" name="sameadr"> Địa chỉ giao hàng giống với thanh toán!
+      </label>
+      <input type="submit" value="XÁC NHẬN" class="btn">
+    </div>
+  </form>
+  </div>
+  <div class="don">
+  <div class="col-25">
+      <h4>Cart 
+        <span class="price" style="color:black">
+          <i class="fa fa-shopping-cart"></i> 
+          <b>4</b>
+        </span>
+      </h4>
+      <p><a href="#">Product 1</a> <span class="price">$15</span></p>
+      <p><a href="#">Product 2</a> <span class="price">$5</span></p>
+      <p><a href="#">Product 3</a> <span class="price">$8</span></p>
+      <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+      <hr>
+      <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+    </div>
+  </div>
 </div>
 <div class="footer">
     <div class="container">
