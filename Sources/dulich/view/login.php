@@ -5,16 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>DU LỊCH TRONG NƯỚC-login</title>
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <link rel="stylesheet" href="./public/js/bootstrap.min.css">
-  <script src="./public/js/jquery-3.3.1.min.js"></script>
-  <script src="./public/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="./../public/css/login.css" >
-  <script src="main.js"></script>
 </head>
 <body>
 <div class="container-fluid">
@@ -64,7 +59,7 @@
     <h1>Đăng nhập</h1>
     <input class="t" placeholder="username" type="text" required=""  name="username" >
     <input  class="t" placeholder="password" type="password" required="" name="password">
-    <button class="t" type="submit" name="submit">Đăng nhập</button>
+    <button class="t" type="submit" name="submit" data-toggle="modal" data-target="#myModal">Đăng nhập</button>
 </div>
 <?php
 $conn=mysqli_connect('localhost','root','','btlon');
@@ -84,7 +79,14 @@ if(isset($_POST["submit"])){
     die();
   }
   else{
-    echo"Tên hoặc mật khẩu không đúng!";
+    echo'
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>Tên đăng nhập hoặc mật khẩu sai, vui lòng nhập lại!</p>
+        </div>
+      </div>  
+    </div>';
   }
   mysqli_close($conn);
 }

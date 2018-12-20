@@ -58,9 +58,6 @@
                   <div class="col-sm-1">
                     <a class="log-in" href="http://localhost:8080/tlu/dulich/view/login.php">Đăng nhập</a>
                   </div>  
-                  <div class="col-sm-0">
-                    <a class="dangki" href="http://localhost:8080/tlu/dulich/view/register.php">Đăng kí</a>
-                  </div>
               </div>
           </div>
         </div>  
