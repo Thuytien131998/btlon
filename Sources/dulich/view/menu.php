@@ -55,9 +55,33 @@
                   <div class="col-sm-3 dropdown">
                     <button class="TOUR" href="#">TOUR TRONG NƯỚC</button>
                     <div class="dropdown-content">
-                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Bắc</a>
-                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Trung</a>
-                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Nam</a>
+                    <?php
+                      $con = mysqli_connect("localhost","root","","btlon"); //mo ra kết nối đến máy chủ
+                      if (mysqli_connect_errno())
+                      {
+                          echo "Failed to connect to MySQL: " . mysqli_connect_error();//không thể kết nối
+                      }
+                      //đặt bộ kí tự máy khách mặc định là 
+                      mysqli_query($con,"SET CHARACTER SET 'utf8'");
+                      mysqli_query($con,"SET SESSION collation_connection ='utf8_unicode_ci'");
+                     function getmenu(){
+                      global $con;
+                      mysqli_set_charset($con,"utf8");
+                      $result = mysqli_query($con,"select DISTINCT vungmien,idvung from tour");
+                      $arr=array();
+                      while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
+                      {
+                        $arr[]=$rows;	
+                      }	
+                      return $arr;
+                     }
+                     $getmenu=getmenu();
+                     if(isset($getmenu))foreach($getmenu as $value){
+                    ?>
+                      <a href="http://localhost:8080/tlu/dulich/view/menu.php?idvung=<?php echo $value["idvung"] ?>"><?php echo $value["vungmien"]?></a>
+                      <?php
+                      }
+                      ?>
                     </div>
                   </div>
                   <div class="col-sm-1">
@@ -72,14 +96,13 @@
     <img src="./../public/images/tet.jpg" style="width:100%; height:600px">
     </div>
     <div class="container">
-    <div class="col-sm-12">
-        <h3>DU LỊCH MIỀN BẮC</h3>
-    </div>
-      <?php
+    <?php
+      
       function getnhomtour()
       {
         global $con;
-        $result = mysqli_query($con,"select * from tour where vungmien='Miền Bắc'");
+        $idvung=$_GET["idvung"];
+        $result = mysqli_query($con,"SELECT * from tour where idvung=$idvung ");
         $arr=array();
         while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
         {
@@ -91,7 +114,7 @@
       if(isset($getnhomtour)) foreach($getnhomtour as $value)
       {
       ?>
-    <div class="col-sm-4">
+    <div class="col-sm-4"   style="margin-top: 20px;">
         <div class="hot1">
           <img src="./../public/images/<?php echo $value["images"]?>" class="img1">
           <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?></span>

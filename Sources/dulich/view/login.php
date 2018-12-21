@@ -43,9 +43,33 @@
       <div class="col-sm-3 dropdown">
                     <button class="TOUR" href="#">TOUR TRONG NƯỚC</button>
                     <div class="dropdown-content">
-                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Bắc</a>
-                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Trung</a>
-                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Nam</a>
+                    <?php
+                      $con = mysqli_connect("localhost","root","","btlon"); //mo ra kết nối đến máy chủ
+                      if (mysqli_connect_errno())
+                      {
+                          echo "Failed to connect to MySQL: " . mysqli_connect_error();//không thể kết nối
+                      }
+                      //đặt bộ kí tự máy khách mặc định là 
+                      mysqli_query($con,"SET CHARACTER SET 'utf8'");
+                      mysqli_query($con,"SET SESSION collation_connection ='utf8_unicode_ci'");
+                     function getmenu(){
+                      global $con;
+                      mysqli_set_charset($con,"utf8");
+                      $result = mysqli_query($con,"select DISTINCT vungmien,idvung from tour");
+                      $arr=array();
+                      while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
+                      {
+                        $arr[]=$rows;	
+                      }	
+                      return $arr;
+                     }
+                     $getmenu=getmenu();
+                     if(isset($getmenu))foreach($getmenu as $value){
+                    ?>
+                      <a href="http://localhost:8080/tlu/dulich/view/menu.php?idvung=<?php echo $value["idvung"] ?>"><?php echo $value["vungmien"]?></a>
+                      <?php
+                      }
+                      ?>
                     </div>
                   </div>
       <div class="col-sm-0">
@@ -75,7 +99,7 @@ if(isset($_POST["submit"])){
   if($num_row !=0){
     header("Location: http://localhost:8080/tlu/dulich/index.php");
     $_SESSION["loged_customer"]=true;
-		$_SESSION["loged_customer"]=$username;
+		$_SESSION["loged_customer"]= $username;
     die();
   }
   else{

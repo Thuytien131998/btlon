@@ -38,9 +38,9 @@
                     </a>
                   </div>
                   <div class="col-sm-3">
-                    <form class="navbar-form navbar-left" action="/action_page.php">
+                    <form class="navbar-form navbar-left" action="">
                       <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Nhập nội dung cần tìm">
+                        <input type="text" class="form-control" placeholder="Nhập nội dung cần tìm" name="q">
                         <div class="input-group-btn">
                           <button class="btn btn-default" type="submit">
                             <i class="glyphicon glyphicon-search"></i>
@@ -52,21 +52,37 @@
                   <div class="col-sm-3 dropdown">
                     <button class="TOUR" href="#">TOUR TRONG NƯỚC</button>
                     <div class="dropdown-content">
-                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Bắc</a>
-                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Trung</a>
-                      <a href="http://localhost:8080/tlu/dulich/view/menu.php">Miền Nam</a>
+                    <?php
+                     function getmenu(){
+                      global $con;
+                      mysqli_set_charset($con,"utf8");
+                      $result = mysqli_query($con,"select DISTINCT vungmien,idvung from tour");
+                      $arr=array();
+                      while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
+                      {
+                        $arr[]=$rows;	
+                      }	
+                      return $arr;
+                     }
+                     $getmenu=getmenu();
+                     if(isset($getmenu))foreach($getmenu as $value){
+                    ?>
+                      <a href="http://localhost:8080/tlu/dulich/view/menu.php?idvung=<?php echo $value["idvung"] ?>"><?php echo $value["vungmien"]?></a>
+                      <?php
+                      }
+                      ?>
                     </div>
                   </div>
                   <div class="col-sm-1">
                   <?php 
-				          if(!isset($_SESSION["loged_customer"])) 
+				          if(isset($_SESSION["loged_customer"])) 
 				             {
 				          ?><ul class="l">
                   <li>
-                    <a href=""><span  class="glyphicon glyphicon-user"></span><?php echo $username;?></a>
+                    <a href=""><span  class="glyphicon glyphicon-user"></span><?php echo  $_SESSION["loged_customer"];?></a>
                   </li>
                   <li>
-                  <a href="http://localhost:8080/tlu/dulich/view/logout.php" class="logout" title="Đăng xuất"><span  class="fa fa-sign-out"></span></a>
+                  <a href="http://localhost:8080/tlu/dulich/view/logout.php" class="logout" title="Đăng xuất" type="dangxuat" name="dangxuat"><span  class="fa fa-sign-out"></span></a>
                   </li></ul>
 				          <?php
 				            }
