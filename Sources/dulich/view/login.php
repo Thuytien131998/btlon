@@ -86,34 +86,34 @@
     <button class="t" type="submit" name="submit" data-toggle="modal" data-target="#myModal">Đăng nhập</button>
 </div>
 <?php
-$conn=mysqli_connect('localhost','root','','btlon');
-if(!$conn){
-    die("khong the ket noi".mysqli_connect_error());
-}
-if(isset($_POST["submit"])){
-  $username= mysqli_real_escape_string($conn,$_POST["username"]);
-  $password= mysqli_real_escape_string($conn,$_POST["password"]);
-  $sql="select * from users where username='$username' and password='$password'";
-  $query=mysqli_query($conn,$sql);
-  $num_row=mysqli_num_rows($query);
-  if($num_row !=0){
-    header("Location: http://localhost:8080/tlu/dulich/index.php");
-    $_SESSION["loged_customer"]=true;
-		$_SESSION["loged_customer"]= $username;
-    die();
+  $conn=mysqli_connect('localhost','root','','btlon');
+  if(!$conn){
+      die("khong the ket noi".mysqli_connect_error());
   }
-  else{
-    echo'
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <p>Tên đăng nhập hoặc mật khẩu sai, vui lòng nhập lại!</p>
-        </div>
-      </div>  
-    </div>';
+  if(isset($_POST["submit"])){
+    $username= mysqli_real_escape_string($conn,$_POST["username"]);
+    $password= mysqli_real_escape_string($conn,$_POST["password"]);
+    $sql="select * from users where username='$username' and password='$password'";
+    $query=mysqli_query($conn,$sql);
+    $num_row=mysqli_num_rows($query);
+    if($num_row !=0){
+      header("Location: http://localhost:8080/tlu/dulich/index.php");
+      $_SESSION["loged_customer"]=true;
+      $_SESSION["loged_customer"]= $username;
+      die();
+    }
+    else{
+      echo'
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <p>Tên đăng nhập hoặc mật khẩu sai, vui lòng nhập lại!</p>
+          </div>
+        </div>  
+      </div>';
+    }
+    mysqli_close($conn);
   }
-  mysqli_close($conn);
-}
 ?>
 <div class="footer">
     <div class="container">

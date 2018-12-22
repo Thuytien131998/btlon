@@ -1,23 +1,33 @@
- <!DOCTYPE html>
+<?php 
+  $con = mysqli_connect("localhost","root","","btlon"); //mo ra kết nối đến máy chủ
+  if (mysqli_connect_errno())
+  {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();//không thể kết nối
+  }
+  //đặt bộ kí tự máy khách mặc định là 
+  mysqli_query($con,"SET CHARACTER SET 'utf8'");
+  mysqli_query($con,"SET SESSION collation_connection ='utf8_unicode_ci'");
+?>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>DU LỊCH TRONG NƯỚC</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>DU LỊCH TRONG NƯỚC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./../public/css/dat1.css">
-</head>
+  <link rel="stylesheet" type="text/css" href="./../public/css/search.css">
+</head> 
 <body>
-<div class="container-fluid">
-<div class="header">
+  <div class="container-fluid">
+      <div class="header">
           <div>
               <div class="row">
-              <div class="col-sm-1">
-                  <a class="fa fa-home" href="http://localhost:8080/tlu/dulich/index.php" ></a></div>  
+                  <div class="col-sm-1">
+                  <a class="fa fa-home" href="http://localhost:8080/tlu/dulich/index.php" ></a></div>
                   <div class="col-sm-1">
                     <p><a href="mailto:Tien.vitconxauxi@gmail.com">
                         Email
@@ -80,50 +90,47 @@
               </div>
           </div>
         </div>  
-</div>
-<div class="content">
-  <div class="don">
-  <form action="/action_page.php">
-    <div class="col-50">
-      <h3>Thông Tin</h3>
-      <label for="fname"><i class="fa fa-user"></i> Họ và tên</label>
-      <input type="text" id="fname" name="firstname" placeholder="Full name" required="">
-      <label for="fname"><i class="fa fa-user"></i> Số điện thoại</label>
-      <input type="text" id="phone" name="phone" placeholder="phone" required="" pattern="([0-9]{10})"title="Vui lòng nhập đúng số điện thoại!">
-      <label for="email"><i class="fa fa-envelope"></i> Email</label>
-      <input type="text" id="email" name="email" placeholder="john@example.com" required="" pattern="([\w._%+-]+@[\w.-]+[a-zA-Z]{2,4})"title="Vui lòng nhập lại email!">
-      <label for="adr"><i class="fa fa-address-card-o"></i> Địa chỉ</label>
-      <input type="text" id="adr" name="address" placeholder="address" required="">
-    </div>
-    <div class="col-50">
-      <h3> Cách thanh toán</h3>
-      <label for="fname"><i class="fa fa-user"></i>Chủ thẻ</label>
-      <input type="text" id="NameCard" name="NameCard" placeholder="Name on Card" required="">
-      <label for="fname"><i class="fa fa-user"></i>Số thẻ tín dụng</label>
-      <input type="text" id="Creditnumber" name="Creditnumber" placeholder="Credit card number" required="" pattern="(\d{4}\d{4}\d{4}\d{4})" title="Vui lòng nhập lại số thẻ!">
-      <label for="fname"><i class="fa fa-user"></i>Năm hết hạn thẻ</label>
-      <input type="text" id="ExpYear" name="ExpYear" placeholder="Exp Year" required="" pattern="(\d{4})" title="Vui lòng nhập lại năm hết hạn thẻ!">
-      <label>
-        <input type="checkbox" checked="checked" name="sameadr"> Địa chỉ giao hàng giống với thanh toán!
-      </label>
-      <input type="submit" value="XÁC NHẬN" class="btn">
-    </div>
-  </form>
   </div>
-  <div class="don">
-  <div class="col-25">
-      <h4>Thanh toán
-        <span class="price" style="color:black">
-          <i class="fa fa-shopping-cart"></i> 
-        </span>
-      </h4>
-      <p><a href="#">Product 1</a><span class="price">$15</span></p>
-      <hr>
-      <p>Tổng <span class="price" style="color:black"><b>$30</b></span></p>
+  <div class="content">
+  <div class="content">
+    <div class="gallery">
+    <img src="./../public/images/tet.jpg" style="width:100%; height:600px">
     </div>
+    <div class="container">
+    <?php
+      
+      function getnhomtour()
+      {
+        global $con;
+        $idvung=$_GET["idvung"];
+        $result = mysqli_query($con,"SELECT * from tour where idvung=$idvung ");
+        $arr=array();
+        while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
+        {
+          $arr[]=$rows;	
+        }	
+        return $arr;
+      }
+      $getnhomtour=getnhomtour();
+      if(isset($getnhomtour)) foreach($getnhomtour as $value)
+      {
+      ?>
+    <div class="col-sm-4"   style="margin-top: 20px;">
+        <div class="hot1">
+          <img src="./../public/images/<?php echo $value["images"]?>" class="img1">
+          <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?></span>
+          <p><?php echo $value["khachsan"]?></p>
+          <p>Khởi hành:<?php echo $value["diemxuatphat"]?></p>
+          <a href="http://localhost:8080/tlu/dulich/view/ta.php/?id=<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
+        </div>
+    </div>
+    <?php
+    }
+    ?>
   </div>
-</div>
-<div class="footer">
+  </div>
+  </div>
+    <div class="footer">
     <div class="container">
       <div class="col-sm-5">
         <a href="http://localhost:8080/tlu/dulich/index.php">DU LỊCH TRONG NƯỚC</a>
