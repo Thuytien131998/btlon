@@ -82,45 +82,73 @@
         </div>  
 </div>
 <div class="content">
+<?php
+$conn=mysqli_connect('localhost','root','','btlon');
+if(!$conn){
+    die("khong the ket noi".mysqli_connect_error());
+}
+mysqli_set_charset($conn,"utf8");
+if(isset($_POST["submit"])){
+  $name= mysqli_real_escape_string($conn,$_POST["name"]);
+  $Tenthenganhang= mysqli_real_escape_string($conn,$_POST["Tenthenganhang"]);
+  $phoneDH= mysqli_real_escape_string($conn,$_POST["phoneDH"]);
+  $emailDH= mysqli_real_escape_string($conn,$_POST["email"]);
+  $addressDH= mysqli_real_escape_string($conn,$_POST["addressDH"]);
+  $Masothe= mysqli_real_escape_string($conn,$_POST["Masothe"]);
+  $NHH= mysqli_real_escape_string($conn,$_POST["NHH"]);
+  $sql="insert into users(name,Tenthenganhang,phoneDH,emailDH,addressDH,Masothe,NHH)value('$username','$password','$phone','$email','$address','0')";
+  header("Location: http://localhost:8080/tlu/dulich/index.php");
+  $query=mysqli_query($conn,$sql);
+  mysqli_close($conn);
+}
+?>
   <div class="don">
   <form action="/action_page.php">
     <div class="col-50">
       <h3>Thông Tin</h3>
       <label for="fname"><i class="fa fa-user"></i> Họ và tên</label>
-      <input type="text" id="fname" name="firstname" placeholder="Full name" required="">
+      <input type="text" id="fname" name="name" placeholder="Full name" required="">
       <label for="fname"><i class="fa fa-user"></i> Số điện thoại</label>
-      <input type="text" id="phone" name="phone" placeholder="phone" required="" pattern="([0-9]{10})"title="Vui lòng nhập đúng số điện thoại!">
+      <input type="text" id="phone" name="phoneDH" placeholder="phone" required="" pattern="([0-9]{10})"title="Vui lòng nhập đúng số điện thoại!">
       <label for="email"><i class="fa fa-envelope"></i> Email</label>
-      <input type="text" id="email" name="email" placeholder="john@example.com" required="" pattern="([\w._%+-]+@[\w.-]+[a-zA-Z]{2,4})"title="Vui lòng nhập lại email!">
+      <input type="text" id="email" name="emailDH" placeholder="john@example.com" required="" pattern="([\w._%+-]+@[\w.-]+[a-zA-Z]{2,4})"title="Vui lòng nhập lại email!">
       <label for="adr"><i class="fa fa-address-card-o"></i> Địa chỉ</label>
-      <input type="text" id="adr" name="address" placeholder="address" required="">
+      <input type="text" id="adr" name="addressDH" placeholder="address" required="">
     </div>
     <div class="col-50">
       <h3> Cách thanh toán</h3>
       <label for="fname"><i class="fa fa-user"></i>Chủ thẻ</label>
-      <input type="text" id="NameCard" name="NameCard" placeholder="Name on Card" required="">
+      <input type="text" id="NameCard" name="Tenthenganhang" placeholder="Name on Card" required="">
       <label for="fname"><i class="fa fa-user"></i>Số thẻ tín dụng</label>
-      <input type="text" id="Creditnumber" name="Creditnumber" placeholder="Credit card number" required="" pattern="(\d{4}\d{4}\d{4}\d{4})" title="Vui lòng nhập lại số thẻ!">
+      <input type="text" id="Creditnumber" name="Masothe" placeholder="Credit card number" required="" pattern="(\d{4}\d{4}\d{4}\d{4})" title="Vui lòng nhập lại số thẻ!">
       <label for="fname"><i class="fa fa-user"></i>Năm hết hạn thẻ</label>
-      <input type="text" id="ExpYear" name="ExpYear" placeholder="Exp Year" required="" pattern="(\d{4})" title="Vui lòng nhập lại năm hết hạn thẻ!">
+      <input type="text" id="ExpYear" name="NHH" placeholder="Exp Year" required="" pattern="(\d{4})" title="Vui lòng nhập lại năm hết hạn thẻ!">
       <label>
         <input type="checkbox" checked="checked" name="sameadr"> Địa chỉ giao hàng giống với thanh toán!
       </label>
-      <input type="submit" value="XÁC NHẬN" class="btn">
+      <input type="submit" value="XÁC NHẬN" class="btn"  name="submit">
     </div>
   </form>
   </div>
   <div class="don">
   <div class="col-25">
-      <h4>Thanh toán
-        <span class="price" style="color:black">
-          <i class="fa fa-shopping-cart"></i> 
-        </span>
-      </h4>
-      <p><a href="#">Product 1</a><span class="price">$15</span></p>
+      <h4>Thanh toán</h4>
       <hr>
-      <p>Tổng <span class="price" style="color:black"><b>$30</b></span></p>
-    </div>
+      <h5><div class="col-sm-3">
+      <p>Mã Tour</p>
+      </div>
+      <div class="col-sm-3">
+      <p>Giá</p>
+      </div>
+      <div class="col-sm-3">
+      <p>Số lượng</p>
+      </div>
+      <div class="col-sm-3">
+      <p>Tổng cộng</p>
+      </div>
+      </h5>
+      <hr>
+      
   </div>
 </div>
 <div class="footer">

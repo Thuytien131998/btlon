@@ -48,52 +48,7 @@
                         </div>
                       </div>
                     </form>
-                    <?php
-                    function search($search)
-                    {
-                      global $con;
-                      $arr_search=explode(" ",$search);
-                      $str_search="";
-                      $i=0;
-                      foreach($arr_search as $value)
-                      {
-                        if($i==0)
-                        {
-                        $str_search .= "nameTour like '%{$value}%'";
-                        }
-                        else
-                        {
-                         $str_search .= "or gia like '%{$value}%'"; 
-                        }
-                       $i++; 
-                      }
-                     $result=mysqli_query($con,"select * from tour where {$str_search} limit 1,9");
-                     if(mysqli_num_rows($result)>0)
-                     {
-                       $arr=array();
-                       while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
-                       {
-                         $arr[]=$row;	
-                       }
-                     return $arr; 
-                     }
-                     else
-                     {
-                       return false;	
-                     }
-                    }
-                    ?>
-                    <?php
-                    $search="";
-                    if(isset($_POST["btn_search"]))
-                    {
-                      if(isset($_POST["search"]))
-                      {
-                      $search=mysql_real_escape_string($_POST["search"]);
-                      $get_search = search($search);
-                      }
-                    }
-                    ?>
+                    
                   </div>
                   <div class="col-sm-3 dropdown">
                     <button class="TOUR" href="#">TOUR TRONG NƯỚC</button>

@@ -102,8 +102,8 @@
       function getnhomtour()
       {
         global $con;
-        $idvung=$_GET["idvung"];
-        $result = mysqli_query($con,"SELECT * from tour where idvung=$idvung ");
+        $idvungmien =$_GET["idvungmien"];
+        $result = mysqli_query($con,"SELECT * from tour where idvungmien=$idvungmien ");
         $arr=array();
         while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
         {
