@@ -219,7 +219,6 @@
   if(isset($getnhomtourtrung))foreach($getnhomtourtrung as $value)
   {
   ?>
-  
   <div class="col-sm-4">
       <div class="hot1">
         <img src="./public/images/<?php echo $value["images"]?>" class="img1">

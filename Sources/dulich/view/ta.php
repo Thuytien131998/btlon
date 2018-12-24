@@ -94,7 +94,6 @@
     $result=mysqli_query($conn,$sql);
     //xu li ket qua truy van
     ?>
-
     <div class="container">
     <?php
     while($row=mysqli_fetch_assoc($result)){

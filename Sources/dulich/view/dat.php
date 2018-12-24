@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./../public/css/dat1.css">
+  <link rel="stylesheet" type="text/css" href="./../public/css/dat.css">
 </head>
 <body>
 <div class="container-fluid">
@@ -135,21 +135,56 @@ if(isset($_POST["submit"])){
       <h4>Thanh toán</h4>
       <hr>
       <h5><div class="col-sm-3">
-      <p>Mã Tour</p>
+      <p><b>Tên Tour</b></p>
       </div>
       <div class="col-sm-3">
       <p>Giá</p>
       </div>
       <div class="col-sm-3">
-      <p>Số lượng</p>
+      <p><b>Số lượng</b></p>
       </div>
       <div class="col-sm-3">
-      <p>Tổng cộng</p>
+      <p><b>Tổng cộng</b></p>
       </div>
       </h5>
       <hr>
-      
+      <hr>
   </div>
+  <div class="chitiet">
+  <?php
+    $conn=mysqli_connect('localhost','root','','btlon');
+    if(!$conn){
+        die("khong the ket noi".mysqli_connect_error());
+    }
+    //thuc hien cau truy van
+    mysqli_set_charset($conn,"utf8");
+    $sql = "SELECT * from tour where idTour=1";
+    $result=mysqli_query($conn,$sql);
+    //xu li ket qua truy van
+    ?>
+      <div class="dondat">
+      <?php
+    while($row=mysqli_fetch_assoc($result)){
+    ?>
+      <div class="col-sm-3">
+      <?php
+        echo'<p>'.$row['nameTour'].'</p>';?></div>
+      <div class="col-sm-3">
+      <?php
+        echo'<p>'.$row['gia'].'</p>';?></div>
+      <div class="col-sm-3" style="width:10%">
+      <input type="text" id="soluong" name="soluong" placeholder="1" required="">
+      <?php
+        echo'<p>'.$row['nameTour'].'</p>';?></div>
+      <div class="col-sm-3" style="margin:0 0 0 190px">
+      <?php
+        echo'<p>'.$row['gia'].'</p>';
+      }
+      mysqli_close($conn);
+      ?></div>
+      </div>
+      <hr>
+      </div>
 </div>
 <div class="footer">
     <div class="container">
