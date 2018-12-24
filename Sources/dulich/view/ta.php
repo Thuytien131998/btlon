@@ -115,7 +115,7 @@
         <div style="background-color:pink;color: black; margin: 10px 0 10px;">
         <div class="col-sm-6">
         <?php
-        echo '<h3><p class="b">GIÁ:</p>'.$row['gia'].'</h3>'
+        echo '<h3><p class="b">GIÁ:</p>'.$row['gia'].' vnd</h3>'
         ?>
         </div>
         <div class="col-sm-6">
@@ -123,11 +123,9 @@
         echo '<h3><p class="b">Số chỗ còn:</p>'.$row['socho'].'</h3>'
         ?>
         </div>
-        <a href="http://localhost:8080/tlu/dulich/view/dat.php">
+        <a href="http://localhost:8080/tlu/dulich/view/dat.php/?id=<?php echo $row["idTour"] ?>">
        <button class="btn btn-primary btn-block" >Đặt Tour</button></a>
-       
        </div>
-      
         <?php 
         echo'<img src="../../public/images/'.$row['images'].'"width="1100" height="600px" />';
         echo '<p><h4>Lịch trình:</h4>'.$row['lichtrinh'].'</p>';

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./../public/css/dat.css">
+  <link rel="stylesheet" type="text/css" href="../../public/css/dat.css">
 </head>
 <body>
 <div class="container-fluid">
@@ -96,14 +96,14 @@ if(isset($_POST["submit"])){
   $addressDH= mysqli_real_escape_string($conn,$_POST["addressDH"]);
   $Masothe= mysqli_real_escape_string($conn,$_POST["Masothe"]);
   $NHH= mysqli_real_escape_string($conn,$_POST["NHH"]);
-  $sql="insert into users(name,Tenthenganhang,phoneDH,emailDH,addressDH,Masothe,NHH)value('$username','$password','$phone','$email','$address','0')";
-  header("Location: http://localhost:8080/tlu/dulich/index.php");
+  $sql="insert into donhang(name,Tenthenganhang,phoneDH,emailDH,addressDH,Masothe,NHH)value('$name','$Tenthenganhang','$phoneDH','$emailDH','$addressDH','$Masothe','$NHH')";
+  echo"Chúc mừng bạn đã đặt vé thành công!";
   $query=mysqli_query($conn,$sql);
   mysqli_close($conn);
 }
 ?>
   <div class="don">
-  <form action="/action_page.php">
+  <form action="">
     <div class="col-50">
       <h3>Thông Tin</h3>
       <label for="fname"><i class="fa fa-user"></i> Họ và tên</label>
@@ -138,7 +138,7 @@ if(isset($_POST["submit"])){
       <p><b>Tên Tour</b></p>
       </div>
       <div class="col-sm-3">
-      <p>Giá</p>
+      <p><b>Giá</b></p>
       </div>
       <div class="col-sm-3">
       <p><b>Số lượng</b></p>
@@ -158,12 +158,14 @@ if(isset($_POST["submit"])){
     }
     //thuc hien cau truy van
     mysqli_set_charset($conn,"utf8");
-    $sql = "SELECT * from tour where idTour=1";
+    $id=$_GET["id"];
+    $sql = "SELECT * from tour where idTour=$id";
     $result=mysqli_query($conn,$sql);
     //xu li ket qua truy van
     ?>
       <div class="dondat">
       <?php
+      $tongtien=0;
     while($row=mysqli_fetch_assoc($result)){
     ?>
       <div class="col-sm-3">
@@ -171,16 +173,22 @@ if(isset($_POST["submit"])){
         echo'<p>'.$row['nameTour'].'</p>';?></div>
       <div class="col-sm-3">
       <?php
-        echo'<p>'.$row['gia'].'</p>';?></div>
+        echo'<p>'.$row['gia'].' vnd </p>';?></div>
       <div class="col-sm-3" style="width:10%">
-      <input type="text" id="soluong" name="soluong" placeholder="1" required="">
+      <input type="text" id="soluong" name="soluong" value="1" required=""pattern="([0-9]{10})"></div>
       <?php
-        echo'<p>'.$row['nameTour'].'</p>';?></div>
-      <div class="col-sm-3" style="margin:0 0 0 190px">
-      <?php
-        echo'<p>'.$row['gia'].'</p>';
+      if(isset($_POST['soluong'])){
+        $soluong= mysqli_real_escape_string($conn,$_POST["soluong"]);
+        $_SESSION["soluong"]= $soluong;
+        $tongtien+=$row['gia']* $_SESSION["soluong"] ;
       }
+      ?>
+        <div class="col-sm-3" style="margin:0 0 0 190px">
+      <?php
+        echo $tongtien;
+      
       mysqli_close($conn);
+      }
       ?></div>
       </div>
       <hr>
@@ -193,7 +201,7 @@ if(isset($_POST["submit"])){
         <ul>
           <p>Email:Tien.vitconxaixi@gmail.com</p>
           <p>Tư vấn: 1900 1800</p>
-         <img src="./../public/images/i.png" class="a1">
+         <img src="../../public/images/i.png" class="a1">
         </ul>
       </div>
       <div class="col-sm-5">
