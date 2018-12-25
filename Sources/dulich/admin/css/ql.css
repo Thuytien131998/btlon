@@ -1,0 +1,20 @@
+.row{
+    background-color: rgb(11, 11, 14) ;
+    color:white;
+}
+
+a{color:rgb(199, 212, 11) !important;}
+
+.dieukhien{
+    background-color: rgb(23, 23, 24) ;
+    color:white;
+    height: 40px;  
+}
+.col-sm-3{
+    margin-top: 20px;  
+    margin-left: 50px;
+    margin-right: 0px;
+}
+.col-sm-2{
+    margin-top: 20px;
+}

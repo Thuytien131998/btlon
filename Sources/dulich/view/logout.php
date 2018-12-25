@@ -1,5 +1,15 @@
+<meta charset="utf-8">
 <?php
- session_start();
- session_destroy();
- header('Location: http://localhost:8080/tlu/dulich/');
+ ession_start();
+ $act="";
+ if(isset($_GET["act"]))
+ {
+     $act=$_GET["act"];
+     switch ($act)
+     {
+         case "logout":
+         unset($_SESSION["loged"]);
+         break;		
+     }
+ }
 ?>

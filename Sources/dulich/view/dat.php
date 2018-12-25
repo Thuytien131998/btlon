@@ -165,7 +165,7 @@ if(isset($_POST["submit"])){
     ?>
       <div class="dondat">
       <?php
-      $tongtien=0;
+      $tongtien='0';
     while($row=mysqli_fetch_assoc($result)){
     ?>
       <div class="col-sm-3">
@@ -173,20 +173,15 @@ if(isset($_POST["submit"])){
         echo'<p>'.$row['nameTour'].'</p>';?></div>
       <div class="col-sm-3">
       <?php
-        echo'<p>'.$row['gia'].' vnd </p>';?></div>
+        echo'<p id=gia>'.$row['gia'].' </p>';?></div>
       <div class="col-sm-3" style="width:10%">
       <input type="text" id="soluong" name="soluong" value="1" required=""pattern="([0-9]{10})"></div>
       <?php
-      if(isset($_POST['soluong'])){
-        $soluong= mysqli_real_escape_string($conn,$_POST["soluong"]);
-        $_SESSION["soluong"]= $soluong;
-        $tongtien+=$row['gia']* $_SESSION["soluong"] ;
-      }
+      
       ?>
         <div class="col-sm-3" style="margin:0 0 0 190px">
+      <span id=tongtien><?php echo $tongtien ?></span>
       <?php
-        echo $tongtien;
-      
       mysqli_close($conn);
       }
       ?></div>
@@ -214,4 +209,16 @@ if(isset($_POST["submit"])){
     </div>
   </div>
 </body>
+<script type="text/javascript">
+ $( document ).ready(function() {
+    var gia = $("#gia").text();
+    var soluong = $('#soluong').val();
+    var tongtien = $('#tongtien').text();
+    Number(gia*soluong);
+    tongtien=tongtien+(gia*soluong);
+    alert(gia);
+    alert(soluong);
+    alert(tongtien);
+  });
+</script>
 </html>
