@@ -76,11 +76,12 @@
                   </div>
                   <div class="col-sm-1">
                   <?php 
-				          if(isset($_SESSION["loged_customer"])) 
+				          if(!isset($_SESSION["loged_customer"])) 
 				             {
-				          ?><ul class="l">
+				          ?>
+                  <ul class="l">
                   <li>
-                    <a href=""><span  class="glyphicon glyphicon-user"></span><?php echo  $_SESSION["loged_customer"];?></a>
+                    <a href=""><span  class="glyphicon glyphicon-user"></span><?php if(isset($_SESSION["loged_customer"])) echo $customer;?></a>
                   </li>
                   <li>
                   <a href="http://localhost:8080/tlu/dulich/view/logout.php" class="logout" title="Đăng xuất" type="dangxuat" name="dangxuat"><span  class="fa fa-sign-out"></span></a>
@@ -90,7 +91,7 @@
 				            else 
 				            {
 				          ?>
-                    <a href="http://localhost:8080/tlu/dulich/view/login.php">Đăng nhập</a>
+                  <a href="http://localhost:8080/tlu/dulich/view/login.php">Đăng nhập</a>
                   <?php	
 			       	      }
 				          ?> 
@@ -98,7 +99,27 @@
               </div>
           </div>
         </div>  
-  </div>
+  </div><?php
+  if(isset($_SESSION["loged_customer"]))
+	{
+	$customer = $_SESSION["username_customer"];
+	}
+	else
+	{
+	$customer= "Đăng nhập";	
+	}
+	$act="";
+	if(isset($_GET["act"]))
+	{
+		$act=$_GET["act"];
+		switch ($act)
+		{
+			case"logout":
+			unset($_SESSION["loged_customer"]);
+			header("location:index.php");
+			break;	
+		}
+	}?>
   <div class="content">
     <div class="bangtruyen">
       <div>

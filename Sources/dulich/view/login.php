@@ -90,6 +90,7 @@
   if(!$conn){
       die("khong the ket noi".mysqli_connect_error());
   }
+  $getcustomer="";
   if(isset($_POST["submit"])){
     $username= mysqli_real_escape_string($conn,$_POST["username"]);
     $password= mysqli_real_escape_string($conn,$_POST["password"]);
@@ -99,7 +100,7 @@
     if($num_row !=0){
       $_SESSION["loged_customer"]=true;
       header("Location: logout.php");
-      $_SESSION["loged_customer"]= $username;
+      $_SESSION["username_customer"]= $username;
       die();
     }
     else{

@@ -19,20 +19,37 @@
             <li class=""><a>Xin chào <?php echo $_SESSION["username"]; ?></a></li>
             <li><a href="index.php?act=logout">Đăng xuất</a></li>
         </ul>
-    </div>
-    <div class="dieukhien">
-        <div class="col-sm-3">
-            KHÁCH HÀNG
+     <br>
+     <br>
+    <div class="container">
+        <div class="col-sm-3 dropdown">
+        <button class="TOUR" href="#">QUẢN LÍ KHÁCH HÀNG</button>
+        <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
         </div>
-        <div class="col-sm-2">
-            TOUR
         </div>
-        <div class="col-sm-2">
-            ĐƠN HÀNG
+        <div class="col-sm-2 dropdown">
+        <button class="TOUR" href="#">   TOUR</button>
+        <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
+        </div>
+        <div class="col-sm-2 dropdown">
+        <button class="TOUR" href="#">ĐƠN HÀNG</button>
+        <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
         </div>
     </div>
 </div>
 </div>
-
+</div>
+<div class="content"></div>
 </body>
 </html>

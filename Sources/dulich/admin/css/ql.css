@@ -1,15 +1,9 @@
 .row{
-    background-color: rgb(11, 11, 14) ;
+    background-color: black ;
     color:white;
 }
 
 a{color:rgb(199, 212, 11) !important;}
-
-.dieukhien{
-    background-color: rgb(23, 23, 24) ;
-    color:white;
-    height: 40px;  
-}
 .col-sm-3{
     margin-top: 20px;  
     margin-left: 50px;
@@ -18,3 +12,30 @@ a{color:rgb(199, 212, 11) !important;}
 .col-sm-2{
     margin-top: 20px;
 }
+.TOUR{
+    background-color:black;
+    color: white;
+    padding: 16px;
+    font-size: 15px;
+    border: none; 
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: black !important;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #ddd;}
+.dropdown:hover .dropdown-content {display: block;}
