@@ -97,8 +97,8 @@
     $query=mysqli_query($conn,$sql);
     $num_row=mysqli_num_rows($query);
     if($num_row !=0){
-      header("Location: http://localhost:8080/tlu/dulich/index.php");
       $_SESSION["loged_customer"]=true;
+      header("Location: logout.php");
       $_SESSION["loged_customer"]= $username;
       die();
     }
@@ -112,6 +112,7 @@
         </div>  
       </div>';
     }
+
     mysqli_close($conn);
   }
 ?>

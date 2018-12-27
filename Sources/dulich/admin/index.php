@@ -1,6 +1,5 @@
 <meta charset="utf-8">
 <?php 
-
 	session_start();
 	$act="";
 	if(isset($_GET["act"]))

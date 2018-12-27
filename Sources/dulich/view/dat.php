@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="../../public/css/dat.css">
+  <link rel="stylesheet" type="text/css" href="../../public/css/dat.css" >
 </head>
 <body>
 <div class="container-fluid">
@@ -170,10 +170,10 @@ if(isset($_POST["submit"])){
     ?>
       <div class="col-sm-3">
       <?php
-        echo'<p>'.$row['nameTour'].'</p>';?></div>
+        echo'<p id=name>'.$row['nameTour'].'</p>';?></div>
       <div class="col-sm-3">
       <?php
-        echo'<p id=gia>'.$row['gia'].' </p>';?></div>
+        echo'<p id=gia>'.$row['gia'].'</p>';?></div>
       <div class="col-sm-3" style="width:10%">
       <input type="text" id="soluong" name="soluong" value="1" required=""pattern="([0-9]{10})"></div>
       <?php
@@ -211,11 +211,9 @@ if(isset($_POST["submit"])){
 </body>
 <script type="text/javascript">
  $( document ).ready(function() {
-    var gia = $("#gia").text();
-    var soluong = $('#soluong').val();
-    var tongtien = $('#tongtien').text();
-    Number(gia*soluong);
-    tongtien=tongtien+(gia*soluong);
+    var gia = $("#gia").text(); 
+    var soluong = $("#soluong").val();
+    var tongtien=tongtien +(gia*soluong);
     alert(gia);
     alert(soluong);
     alert(tongtien);
