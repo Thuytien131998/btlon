@@ -9,9 +9,8 @@ if(isset($_GET["act"]))
 	{
 		case"logout":
 		unset($_SESSION["loged_customer"]);
-		header("Location: http://localhost:8080/tlu/dulich/");
 		break;	
 	}
 }
-include "../index.php";
+header("Location: http://localhost:8080/tlu/dulich/");
 ?>

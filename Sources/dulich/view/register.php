@@ -92,7 +92,7 @@ if(isset($_POST["submit"])){
   $email= mysqli_real_escape_string($conn,$_POST["email"]);
   $address= mysqli_real_escape_string($conn,$_POST["address"]);
   $sql="insert into users(username,password,phone,email,address,pk)value('$username','$password','$phone','$email','$address','0')";
-  header("Location: http://localhost:8080/tlu/dulich/index.php");
+  header("Location: http://localhost:8080/tlu/dulich/view/index1.php");
   $query=mysqli_query($conn,$sql);
   mysqli_close($conn);
 }

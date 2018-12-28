@@ -1,5 +1,5 @@
 <?php 
-  include "config.php"; //chèn nd của tệp này vào tệp khác trc khi máy chủ thực thi nó
+  include "../config.php"; //chèn nd của tệp này vào tệp khác trc khi máy chủ thực thi nó
 	session_start(); //phiên bắt đầu
 ?>
 <!DOCTYPE html>
@@ -16,15 +16,15 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./public/css/btlon1.css">
+  <link rel="stylesheet" type="text/css" href="./../public/css/btlon1.css">
 </head> 
 <body>
   <div class="container-fluid">
       <div class="header">
           <div>
               <div class="row">
-                  <div class="col-sm-0">
-                  <a class="fa fa-home" href="./index.php" ></a></div>
+                  <div class="col-sm-1">
+                  <a class="fa fa-home" href="http://localhost:8080/tlu/dulich/view/index1.php" ></a></div>
                   <div class="col-sm-1">
                     <p><a href="mailto:Tien.vitconxauxi@gmail.com">
                         Email
@@ -75,7 +75,26 @@
                     </div>
                   </div>
                   <div class="col-sm-1">
+                  <?php 
+				          if(!isset($_SESSION["loged_customer"])) 
+				             {
+				          ?>
+                  <ul class="l">
+                  <li>
+                    <a href=""><span  class="glyphicon glyphicon-user"></span><?php if(isset($_SESSION["loged_customer"])) echo $customer;?></a>
+                  </li>
+                  <li>
+                  <a href="http://localhost:8080/tlu/dulich/view/logout.php" class="logout" title="Đăng xuất" type="dangxuat" name="dangxuat"><span  class="fa fa-sign-out"></span></a>
+                  </li></ul>
+				          <?php
+				            }
+				            else 
+				            {
+				          ?>
                   <a href="http://localhost:8080/tlu/dulich/view/login.php">Đăng nhập</a>
+                  <?php	
+			       	      }
+				          ?> 
                 </div>
               </div>
           </div>
@@ -115,15 +134,15 @@
               <!-- Wrapper for slides -->
               <div class="carousel-inner">
                 <div class="item active">
-                  <img src="./public/images/a8.jpg">
+                  <img src="./../public/images/a8.jpg">
                 </div>
             
                 <div class="item">
-                  <img src="./public/images/a7.jpg" >
+                  <img src="./../public/images/a7.jpg" >
                 </div>
             
                 <div class="item">
-                  <img src="./public/images/a5.jpg" >
+                  <img src="./../public/images/a5.jpg" >
                 </div>
               </div>
             
@@ -161,7 +180,7 @@
     ?>
     <div class="col-sm-4">
       <div class="hot1">
-        <img src="./public/images/<?php echo $value["images"]?>" class="img1">
+        <img src="./../public/images/<?php echo $value["images"]?>" class="img1">
         <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?> vnd</span>
         <p><?php echo $value["khachsan"]?></p>
         <p>Khởi hành: <?php echo $value["diemxuatphat"]?></p>
@@ -192,7 +211,7 @@
   ?>
    <div class="col-sm-4">
       <div class="hot1">
-        <img src="./public/images/<?php echo $value["images"]?>" class="img1">
+        <img src="./../public/images/<?php echo $value["images"]?>" class="img1">
         <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?> vnd</span>
         <p><?php echo $value["khachsan"]?></p>
         <p>Khởi hành:<?php echo $value["diemxuatphat"]?></p>
@@ -223,7 +242,7 @@
   ?>
   <div class="col-sm-4">
       <div class="hot1">
-        <img src="./public/images/<?php echo $value["images"]?>" class="img1">
+        <img src="./../public/images/<?php echo $value["images"]?>" class="img1">
         <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?> vnd</span>
         <p><?php echo $value["khachsan"]?></p>
         <p>Khởi hành:<?php echo $value["diemxuatphat"]?></p>
@@ -256,7 +275,7 @@
   ?>
   <div class="col-sm-4">
       <div class="hot1">
-        <img src="./public/images/<?php echo $value["images"] ?>" class="img1">
+        <img src="./../public/images/<?php echo $value["images"] ?>" class="img1">
         <h4 class="text1"><?php echo $value["nameTour"]; ?></h4><span> Giá: <?php echo $value["gia"]?> vnd</span>
         <p><?php echo $value["khachsan"]?></p>
         <p>Khởi hành: <?php echo $value["diemxuatphat"]?></p>
@@ -272,11 +291,11 @@
   <div class="footer">
     <div class="container">
       <div class="col-sm-5">
-        <a href="index.php">DU LỊCH TRONG NƯỚC</a>
+        <a href="http://localhost:8080/tlu/dulich/view/index1.php">DU LỊCH TRONG NƯỚC</a>
         <ul>
           <p>Email:Tien.vitconxaixi@gmail.com</p>
           <p>Tư vấn: 1900 1800</p>
-         <img src="./public/images/i.png" class="a1">
+         <img src="./../public/images/i.png" class="a1">
         </ul>
       </div>
       <div class="col-sm-5">

@@ -99,7 +99,7 @@
     $num_row=mysqli_num_rows($query);
     if($num_row !=0){
       $_SESSION["loged_customer"]=true;
-      header("Location: logout.php");
+      header("Location: http://localhost:8080/tlu/dulich/view/index1.php");
       $_SESSION["username_customer"]= $username;
       die();
     }

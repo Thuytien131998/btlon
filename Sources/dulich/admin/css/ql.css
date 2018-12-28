@@ -39,3 +39,17 @@ a{color:rgb(199, 212, 11) !important;}
 }
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
+.content{
+    background-color: white;
+    color: black;
+    margin-right:30px;
+}
+table, th, td {
+  margin-top:100px;
+  margin-left:15px;
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+} 
