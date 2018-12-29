@@ -23,13 +23,13 @@
      <br>
     <div class="container">
         <div class="col-sm-3 ">
-        <button class="TOUR" href="http://localhost:8080/tlu/dulich/admin/index.php">QUẢN LÍ KHÁCH HÀNG</button>
+        <button class="TOUR" href="index.php?view=dele_user">QUẢN LÍ KHÁCH HÀNG</button>
         </div>
         <div class="col-sm-2 dropdown">
-        <button class="TOUR" href="#">   TOUR</button>
+        <button class="TOUR" href="#">TOUR</button>
         <div class="dropdown-content">
             <a href="#">Thêm Tour</a>
-            <a href="#">Danh sách Tour</a>
+            <a href="http://localhost:8080/tlu/dulich/admin/view/tour.php">Danh sách Tour</a>
         </div>
         </div>
         <div class="col-sm-2 dropdown">
@@ -43,67 +43,6 @@
 </div>
 </div>
 </div>
-<div class="content">
-<table style="width:100%">
-<tr>
-    <th>STT</th>
-    <th>username</th> 
-    <th>password</th>
-    <th>phone</th>
-    <th>email</th>
-    <th>address</th>
-    <th>Xóa</th>
-</tr>
-<tr>
-<?php
-    $conn=mysqli_connect('localhost','root','','btlon');
-    if(!$conn){
-        die("khong the ket noi".mysqli_connect_error());
-    }
-    //thuc hien cau truy van
-    mysqli_set_charset($conn,"utf8");
-    $sql = "SELECT * from users order by id";
-    $result=mysqli_query($conn,$sql);
-    $stt=0;
-    while($row=mysqli_fetch_assoc($result)){
-        $stt++;
-        echo "<tr>";
-        echo "<td>$stt</td>";
-    ?>
-    <td>
-        <?php
-        echo'<h5>'.$row['username'].'</h5>';
-        ?>
-    </td>
-    <td>
-        <?php
-        echo'<h5>'.$row['password'].'</h5>';
-        ?>
-    </td>
-    <td>
-        <?php
-        echo'<h5>'.$row['phone'].'</h5>';
-        ?>
-    </td>
-    <td>
-        <?php
-        echo'<h5>'.$row['email'].'</h5>';
-        ?>
-    </td>
-    <td>
-        <?php
-        echo'<h5>'.$row['address'].'</h5>';
-        ?>
-    </td>
-    <?php
-    echo"
-    <td>
-        <a href='./../admin/view/dele_user.php?id=".$row['id']."'><span class='glyphicon glyphicon-remove' ></span></a>
-    </td>";
-    }
-    ?>
-</tr>
-</table>
-</div>
+
 </body>
 </html>

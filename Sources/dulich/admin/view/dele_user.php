@@ -1,4 +1,5 @@
 <?php
+include "view/users.php";
     $id=$_GET['id'];
     $conn=mysqli_connect('localhost','root','','btlon');
     if(!$conn){
@@ -9,6 +10,6 @@
     $query=mysqli_query($conn,$sql);
     //thuc hien cau truy van
    if($query){
-    header("location: http://localhost:8080/tlu/dulich/admin/index.php");
+    header("location: users.php");
 }
 ?>
