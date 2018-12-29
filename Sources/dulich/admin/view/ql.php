@@ -28,17 +28,15 @@
         <div class="col-sm-2 dropdown">
         <button class="TOUR" href="#">   TOUR</button>
         <div class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
+            <a href="#">Thêm Tour</a>
+            <a href="#">Danh sách Tour</a>
         </div>
         </div>
         <div class="col-sm-2 dropdown">
         <button class="TOUR" href="#">ĐƠN HÀNG</button>
         <div class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
+            <a href="#">Danh sách đơn hàng</a>
+            <a href="#">Đơn đã đi</a>
         </div>
         </div>
     </div>
@@ -97,10 +95,11 @@
         echo'<h5>'.$row['address'].'</h5>';
         ?>
     </td>
-    <td>
-        <a href="http://localhost:8080/tlu/dulich/admin/view/dele_user.php?id=<?php echo $row["id"] ?>"><span class="glyphicon glyphicon-remove" ></span></a>
-    </td>
     <?php
+    echo"
+    <td>
+        <a href='./../admin/view/dele_user.php?id=".$row['id']."'><span class='glyphicon glyphicon-remove' ></span></a>
+    </td>";
     }
     ?>
 </tr>
