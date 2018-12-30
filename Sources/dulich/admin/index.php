@@ -12,6 +12,24 @@
 			break;		
 		}
 	}
+	$c="";
+	$view="view/users.php";
+	if(isset($_GET["view"]))
+	{
+		$c=$_GET["view"];
+		switch ($c)
+		{
+			case "users":
+			$view="view/users.php";
+			break;
+			
+			case "tour":
+			$view="view/tour.php";
+			break;
+		}	
+	}
+	
+
   include "../config.php"; //chèn nd của tệp này vào tệp khác trc khi máy chủ thực thi nó
   if(!isset($_SESSION["loged"]))
 	{

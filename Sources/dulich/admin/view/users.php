@@ -1,6 +1,6 @@
-<link rel="stylesheet" type="text/css" href="./../css/ql.css">
+<link rel="stylesheet" type="text/css" href="../admin/css/ql.css">
 <div class="content">
-<table style="width:100%">
+<table style="width:100% ">
 <tr>
     <th>STT</th>
     <th>username</th> 
@@ -54,7 +54,7 @@
     <?php
     echo"
     <td>
-        <a href='./../admin/view/dele_user.php?id=".$row['id']."'>Xóa</span></a>
+        <a href='./../admin/view/dele_user.php?id=".$row['id']."'><span class = 'glyphicon glyphicon-trash'> </ span></a>
     </td>";
     }
     ?>

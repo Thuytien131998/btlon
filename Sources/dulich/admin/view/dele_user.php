@@ -10,6 +10,6 @@ include "view/users.php";
     $query=mysqli_query($conn,$sql);
     //thuc hien cau truy van
    if($query){
-    header("location: users.php");
+    header("location: http://localhost:8080/tlu/dulich/admin/");
 }
 ?>
