@@ -94,11 +94,11 @@
     <?php
     echo"
     <td>
-        <a href='./../admin/view/dele_user.php?idTour=".$row['idTour']."'><span class = 'glyphicon glyphicon-pencil'></ span></a>
+        <a href='./../admin/view/dele_tour.php?idTour=".$row['idTour']."'><span class = 'glyphicon glyphicon-pencil'></ span></a>
     </td>";
     echo"
     <td>
-        <a href='./../admin/view/dele_user.php?idTour=".$row['idTour']."'><span class = 'glyphicon glyphicon-trash'></ span></a>
+        <a href='./../admin/view/dele_tour.php?idTour=".$row['idTour']."'><span class = 'glyphicon glyphicon-trash'></ span></a>
     </td>";
     }
     ?>

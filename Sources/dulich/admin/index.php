@@ -22,7 +22,11 @@
 			case "users":
 			$view="view/users.php";
 			break;
-			
+
+			case "add_tour":
+			$view="view/add_tour.php";
+			break; 
+
 			case "tour":
 			$view="view/tour.php";
 			break;

@@ -27,7 +27,7 @@
         <div class="col-sm-2 dropdown">
         <button class="TOUR" href="#">TOUR</button>
         <div class="dropdown-content">
-            <a href="#">Thêm Tour</a>
+            <a href="index.php?view=add_tour">Thêm Tour</a>
             <a href="index.php?view=tour">Danh sách Tour</a>
         </div>
         </div>
