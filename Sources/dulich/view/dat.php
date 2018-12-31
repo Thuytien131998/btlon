@@ -211,12 +211,11 @@ if(isset($_POST["submit"])){
 </body>
 <script type="text/javascript">
  $( document ).ready(function() {
+    var tongtien = 0;
     var gia = $("#gia").text(); 
     var soluong = $("#soluong").val();
-    var tongtien=tongtien +(gia*soluong);
-    alert(gia);
-    alert(soluong);
-    alert(tongtien);
+    tongtien = parseInt(gia)*parseInt(soluong);
+    $("#tongtien").html(tongtien);
   });
 </script>
 </html>
