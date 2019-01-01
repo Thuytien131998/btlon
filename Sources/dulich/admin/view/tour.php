@@ -94,7 +94,7 @@
     <?php
     echo"
     <td>
-        <a href='./../admin/view/dele_tour.php?idTour=".$row['idTour']."'><span class = 'glyphicon glyphicon-pencil'></ span></a>
+        <a href='./../admin/view/update_tour.php?idTour=".$row['idTour']."'><span class = 'glyphicon glyphicon-pencil'></ span></a>
     </td>";
     echo"
     <td>
