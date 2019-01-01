@@ -210,6 +210,7 @@ if(isset($_POST["submit"])){
 </body>
 <script type="text/javascript">
  $( document ).ready(function() {
+   
     var tongtien = 0;
     var gia = $("#gia").text(); 
     var soluong = $("#soluong").val();

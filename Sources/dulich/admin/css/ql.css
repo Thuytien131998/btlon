@@ -59,12 +59,6 @@ th, td {
 .glyphicon-trash{
     color:rgb(6, 60, 121);   
 }
-.col-sm-4{
-    width: 200px;
-    margin-left: 200px;
-    margin-right: 0;
-    margin-top: 50px;
-}
-.col-sm-8{
-    margin: 40px 0 0 0;
+.form-group{
+    margin :20px 50px 50px 50px;
 }
