@@ -98,34 +98,13 @@
     </div>
     <div class="container">
     <?php
-      
-      function getnhomtour()
-      {
-        global $con;
-        $idvungmien =$_GET["idvungmien"];
-        $result = mysqli_query($con,"SELECT * from tour where idvungmien=$idvungmien ");
-        $arr=array();
-        while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
-        {
-          $arr[]=$rows;	
-        }	
-        return $arr;
-      }
-      $getnhomtour=getnhomtour();
-      if(isset($getnhomtour)) foreach($getnhomtour as $value)
-      {
-      ?>
-    <div class="col-sm-4"   style="margin-top: 20px;">
-        <div class="hot1">
-          <img src="./../public/images/<?php echo $value["images"]?>" class="img1">
-          <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?></span>
-          <p><?php echo $value["khachsan"]?></p>
-          <p>Khởi hành:<?php echo $value["diemxuatphat"]?></p>
-          <a href="http://localhost:8080/tlu/dulich/view/ta.php/?id=<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
-        </div>
-    </div>
-    <?php
+    $conn=mysqli_connect('localhost','root','','btlon');
+    if(!$conn){
+        die("khong the ket noi".mysqli_connect_error());
     }
+    //thuc hien cau truy van
+    mysqli_set_charset($conn,"utf8");
+
     ?>
   </div>
   </div>

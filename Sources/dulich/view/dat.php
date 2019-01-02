@@ -96,7 +96,7 @@ if(isset($_POST["submit"])){
   $addressDH= mysqli_real_escape_string($conn,$_POST["addressDH"]);
   $Masothe= mysqli_real_escape_string($conn,$_POST["Masothe"]);
   $NHH= mysqli_real_escape_string($conn,$_POST["NHH"]);
-  $sql="insert into donhang(name,Tenthenganhang,phoneDH,emailDH,addressDH,Masothe,NHH)value('$name','$Tenthenganhang','$phoneDH','$emailDH','$addressDH','$Masothe','$NHH')";
+  $sql="insert into donhang(name,Tenthenganhang,phoneDH,emailDH,addressDH,Masothe,NHH,tinhtrang)value('$name','$Tenthenganhang','$phoneDH','$emailDH','$addressDH','$Masothe','$NHH','chưa nhận')";
   echo"Chúc mừng bạn đã đặt vé thành công!";
   $query=mysqli_query($conn,$sql);
   mysqli_close($conn);
@@ -167,6 +167,7 @@ if(isset($_POST["submit"])){
       <?php
     while($row=mysqli_fetch_assoc($result)){
     ?>
+      <input type="hidden" class="form-control" name="idTour" value="<?php echo $id; ?>">
       <div class="col-sm-3">
       <?php
         echo'<p id=name>'.$row['nameTour'].'</p>';?></div>
@@ -179,7 +180,7 @@ if(isset($_POST["submit"])){
       
       ?>
         <div class="col-sm-3" style="margin:0 0 0 190px">
-      <span id=tongtien><?php echo $tongtien ?></span>
+      <span id=tongtien name="tongDH"><?php echo $tongtien ?></span>
       <?php
       mysqli_close($conn);
       }
@@ -210,7 +211,6 @@ if(isset($_POST["submit"])){
 </body>
 <script type="text/javascript">
  $( document ).ready(function() {
-   
     var tongtien = 0;
     var gia = $("#gia").text(); 
     var soluong = $("#soluong").val();

@@ -38,9 +38,9 @@
                     </a>
                   </div>
                   <div class="col-sm-3">
-                    <form class="navbar-form navbar-left" action="">
+                    <form class="navbar-form navbar-left"  method="POST">
                       <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Nhập nội dung cần tìm" name="search">
+                        <input type="text" class="form-control" placeholder="Nhập nội dung cần tìm" name="keyword">
                         <div class="input-group-btn">
                           <button class="btn btn-default" type="submit" name="btn_search">
                             <i class="glyphicon glyphicon-search"></i>
@@ -48,7 +48,25 @@
                         </div>
                       </div>
                     </form>
-                    
+                    <?php
+                    if(isset($_POST['btn_search'])){
+                      $keyword=mysqli_real_escape_string($con,$_POST["keyword"]);
+                      $sql=mysqli_query("SELECT * from tour where tour like'%$keyword%'");
+                      $num_row=mysqli_num_row($sql);
+                      if($num_row==0){
+                        ?>
+                        <script>
+                        alert(Không tìm thấy kết  quả!);
+                        </script>
+                        <?php
+                      }
+                      else{
+                        while($row=mysqli_fetch_array($sql)){
+                          echo $row['tour'];
+                        }
+                      }
+                    }
+                    ?>
                   </div>
                   <div class="col-sm-3 dropdown">
                     <button class="TOUR" href="#">TOUR TRONG NƯỚC</button>
@@ -59,7 +77,7 @@
                       mysqli_set_charset($con,"utf8");
                       $result = mysqli_query($con,"select DISTINCT vungmien,idvung from tour");
                       $arr=array();
-                      while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
+                      while($rows=mysqli_fetch_array($result))
                       {
                         $arr[]=$rows;	
                       }	
@@ -149,7 +167,7 @@
 		global $con;
 		$result = mysqli_query($con,"select * from tour where noibat='1' limit 3");
 		$arr=array();
-		while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
+		while($rows=mysqli_fetch_array($result))
 		{
 			$arr[]=$rows;	
 		}	
@@ -180,7 +198,7 @@
 		global $con;
 		$result = mysqli_query($con,"select * from tour where vungmien='Miền Bắc' limit 3");
 		$arr=array();
-		while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
+		while($rows=mysqli_fetch_array($result))
 		{
 			$arr[]=$rows;	
 		}	
@@ -211,7 +229,7 @@
 		global $con;
 		$result = mysqli_query($con,"select * from tour where vungmien='Miền Trung' limit 3");
 		$arr=array();
-		while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
+		while($rows=mysqli_fetch_array($result))
 		{
 			$arr[]=$rows;	
 		}	
