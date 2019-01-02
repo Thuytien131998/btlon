@@ -34,8 +34,8 @@
         <div class="col-sm-2 dropdown">
         <button class="TOUR" href="#">ĐƠN HÀNG</button>
         <div class="dropdown-content">
-            <a href="#">Danh sách đơn hàng</a>
-            <a href="#">Đơn đã đi</a>
+            <a href="index.php?view=don">Danh sách đơn hàng chưa đi</a>
+            <a href="index.php?view=dondi">Đơn đã đi</a>
         </div>
         </div>
     </div>

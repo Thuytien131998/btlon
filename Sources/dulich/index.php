@@ -147,7 +147,7 @@
 	function getnhomtourhot()
 	{
 		global $con;
-		$result = mysqli_query($con,"select * from tour where noibat='1'");
+		$result = mysqli_query($con,"select * from tour where noibat='1' limit 3");
 		$arr=array();
 		while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
 		{
@@ -178,7 +178,7 @@
 	function getnhomtourbac()
 	{
 		global $con;
-		$result = mysqli_query($con,"select * from tour where vungmien='Miền Bắc'");
+		$result = mysqli_query($con,"select * from tour where vungmien='Miền Bắc' limit 3");
 		$arr=array();
 		while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
 		{
@@ -240,7 +240,7 @@
 	function getnhomtournam()
 	{
 		global $con;
-		$result = mysqli_query($con,"select * from tour where vungmien='Miền Nam'");
+		$result = mysqli_query($con,"select * from tour where vungmien='Miền Nam' limit 3");
 		$arr=array();
 		while($rows=mysqli_fetch_array($result,MYSQLI_ASSOC))
 		{

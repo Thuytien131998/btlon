@@ -20,8 +20,6 @@ mysqli_set_charset($conn,"utf8");
   $socho= mysqli_real_escape_string($conn,$_POST["socho"]);
   $idvung= mysqli_real_escape_string($conn,$_POST["idvung"]);
   $sql="INSERT into tour(nameTour,ngaykhoihanh,ngayketthuc,gia,diemxuatphat,noibat,vungmien,vanchuyen,khachsan,images,sochongoi,lichtrinh,ghichu,socho,idvung)value('$nameTour','$ngaykhoihanh','$ngayketthuc','$gia','$diemxuatphat','$noibat','$vungmien','$vanchuyen','$khachsan','$images','$sochongoi','$lichtrinh','$ghichu','$socho','$idvung')";
+  header("localhost: http://localhost:8080/tlu/dulich/admin/index.php?view=tour");
   $query=mysqli_query($conn,$sql);
-  if($query){
-    header("http://localhost:8080/tlu/dulich/admin/index.php?view=tour");
-  }
 ?>

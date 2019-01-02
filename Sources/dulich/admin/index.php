@@ -30,6 +30,14 @@
 			case "tour":
 			$view="view/tour.php";
 			break;
+
+			case "don":
+			$view="view/don.php";
+			break;
+
+			case "dondi":
+			$view="view/dondi.php";
+			break;
 		}	
 	}
 	

@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="../css/ql.css">
+<link rel="stylesheet" type="text/css" href="../css/update_tour.css">
 <div class="content">
 <?php
 $conn=mysqli_connect('localhost','root','','btlon');
@@ -10,11 +10,32 @@ $idTour=$_GET['idTour'];
 $sql = "SELECT * from tour where idTour='$idTour'";
 $result=mysqli_query($conn,$sql);
 $row=mysqli_fetch_array($result);
-
+if(isset($_POST["submit"])){
+  $idTour=mysqli_real_escape_string($conn,$_POST["idTour"]);
+  $nameTour= mysqli_real_escape_string($conn,$_POST["nameTour"]);
+  $ngaykhoihanh= mysqli_real_escape_string($conn,$_POST["ngaykhoihanh"]);
+  $ngayketthuc= mysqli_real_escape_string($conn,$_POST["ngayketthuc"]);
+  $gia= mysqli_real_escape_string($conn,$_POST["gia"]);
+  $diemxuatphat= mysqli_real_escape_string($conn,$_POST["diemxuatphat"]);
+  $noibat= mysqli_real_escape_string($conn,$_POST["noibat"]);
+  $vungmien= mysqli_real_escape_string($conn,$_POST["vungmien"]);
+  $vanchuyen= mysqli_real_escape_string($conn,$_POST["vanchuyen"]);
+  $khachsan= mysqli_real_escape_string($conn,$_POST["khachsan"]);
+  $images=mysqli_real_escape_string($conn,$_POST["images"]);
+  $sochongoi= mysqli_real_escape_string($conn,$_POST["sochongoi"]);
+  $lichtrinh= mysqli_real_escape_string($conn,$_POST["lichtrinh"]);
+  $ghichu= mysqli_real_escape_string($conn,$_POST["ghichu"]);
+  $socho= mysqli_real_escape_string($conn,$_POST["socho"]);
+  $idvung= mysqli_real_escape_string($conn,$_POST["idvung"]);
+  $sql="UPDATE  tour set nameTour='$nameTour',ngaykhoihanh='$ngaykhoihanh',ngayketthuc='$ngayketthuc',gia='$gia',diemxuatphat='$diemxuatphat',noibat='$noibat',vungmien='$vungmien',vanchuyen='$vanchuyen',khachsan='$khachsan',images='$images',sochongoi='$sochongoi',lichtrinh='$lichtrinh',ghichu='$ghichu',socho='$socho',idvung='$idvung' where idTour='$idTour'";
+  header("localhost:http://localhost:8080/tlu/dulich/admin/index.php?view=tour");
+  $query=mysqli_query($conn,$sql);
+  mysqli_close($conn);
+}
 ?>
-<form action="xl_update_tour.php" method="post">
+<form  method="POST">
   <div class="form-group">
-  <input type="hidden" class="form-control" name="id" value="<?php echo $id; ?>">
+  <input type="hidden" class="form-control" name="idTour" value="<?php echo $idTour; ?>">
     <label for="name" class="col-sm-1">Tiêu đề: </label>
     <div class="col-sm-8" style=" margin-right:300px; margin-bottom:20px"> <input type="nameTour" class="form-control" name="nameTour"value="<?php echo $row['nameTour']; ?>"></div>
 
@@ -64,8 +85,8 @@ $row=mysqli_fetch_array($result);
   <br>
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
-      <input type="submit"  class="btn btn-primary" value="Cập Nhập" >
-      <a class="btn btn-warning" href="http://localhost:8080/tlu/dulich/admin/index.php?view=tour">Trở về</a>
+      <input type="submit"  class="btn btn-primary" name="submit" value="Cập Nhập" >
+      <a class="btn btn-warning" href="http://localhost:8080/tlu/dulich/admin/index.php?view=tour" style="background-color: blue;">Trở về</a>
     </div>
   </div>
 </form>

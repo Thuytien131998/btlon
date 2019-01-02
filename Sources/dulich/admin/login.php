@@ -48,7 +48,7 @@
         global $con;
         $username= mysqli_real_escape_string($con,$_POST["username"]);
         $password= mysqli_real_escape_string($con,$_POST["password"]);
-        $sql="select * from users where username='$username' and password='$password'";
+        $sql="SELECT * from users where username='$username' and password='$password'";
         $query=mysqli_query($con,$sql);
         $num_row=mysqli_num_rows($query);
         if($num_row !=0)
