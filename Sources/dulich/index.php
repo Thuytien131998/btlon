@@ -38,35 +38,16 @@
                     </a>
                   </div>
                   <div class="col-sm-3">
-                    <form class="navbar-form navbar-left"  method="POST">
+                    <form class="navbar-form navbar-left"  action="view/search.php">
                       <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Nhập nội dung cần tìm" name="keyword">
+                        <input type="text" class="form-control" placeholder="Nhập nội dung cần tìm" >
                         <div class="input-group-btn">
-                          <button class="btn btn-default" type="submit" name="btn_search">
+                          <button class="btn btn-default" type="submit" name="submit">
                             <i class="glyphicon glyphicon-search"></i>
                           </button>
                         </div>
                       </div>
                     </form>
-                    <?php
-                    if(isset($_POST['btn_search'])){
-                      $keyword=mysqli_real_escape_string($con,$_POST["keyword"]);
-                      $sql=mysqli_query("SELECT * from tour where tour like'%$keyword%'");
-                      $num_row=mysqli_num_row($sql);
-                      if($num_row==0){
-                        ?>
-                        <script>
-                        alert(Không tìm thấy kết  quả!);
-                        </script>
-                        <?php
-                      }
-                      else{
-                        while($row=mysqli_fetch_array($sql)){
-                          echo $row['tour'];
-                        }
-                      }
-                    }
-                    ?>
                   </div>
                   <div class="col-sm-3 dropdown">
                     <button class="TOUR" href="#">TOUR TRONG NƯỚC</button>

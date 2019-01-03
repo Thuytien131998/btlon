@@ -28,7 +28,7 @@ if(isset($_POST["submit"])){
   $socho= mysqli_real_escape_string($conn,$_POST["socho"]);
   $idvung= mysqli_real_escape_string($conn,$_POST["idvung"]);
   $sql="UPDATE  tour set nameTour='$nameTour',ngaykhoihanh='$ngaykhoihanh',ngayketthuc='$ngayketthuc',gia='$gia',diemxuatphat='$diemxuatphat',noibat='$noibat',vungmien='$vungmien',vanchuyen='$vanchuyen',khachsan='$khachsan',images='$images',sochongoi='$sochongoi',lichtrinh='$lichtrinh',ghichu='$ghichu',socho='$socho',idvung='$idvung' where idTour='$idTour'";
-  header("localhost:http://localhost:8080/tlu/dulich/admin/index.php?view=tour");
+  header("Location: http://localhost:8080/tlu/dulich/admin/index.php?view=tour");
   $query=mysqli_query($conn,$sql);
   mysqli_close($conn);
 }

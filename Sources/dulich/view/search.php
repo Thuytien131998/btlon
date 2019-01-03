@@ -92,20 +92,13 @@
         </div>  
   </div>
   <div class="content">
-  <div class="content">
     <div class="gallery">
     <img src="./../public/images/tet.jpg" style="width:100%; height:600px">
     </div>
     <div class="container">
-    <?php
-    $conn=mysqli_connect('localhost','root','','btlon');
-    if(!$conn){
-        die("khong the ket noi".mysqli_connect_error());
-    }
-    //thuc hien cau truy van
-    mysqli_set_charset($conn,"utf8");
-
-    ?>
+    <br>
+     
+     
   </div>
   </div>
   </div>

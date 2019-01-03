@@ -1,6 +1,35 @@
 <link rel="stylesheet" type="text/css" href="../admin/css/ql.css">
+<?php
+$conn=mysqli_connect('localhost','root','','btlon');
+if(!$conn){
+    die("khong the ket noi".mysqli_connect_error());
+}
+mysqli_set_charset($conn,"utf8");
+if(isset($_POST["submit"])){
+  $targetDir = "uploads/";
+  $nameTour= mysqli_real_escape_string($conn,$_POST["nameTour"]);
+  $ngaykhoihanh= mysqli_real_escape_string($conn,$_POST["ngaykhoihanh"]);
+  $ngayketthuc= mysqli_real_escape_string($conn,$_POST["ngayketthuc"]);
+  $gia= mysqli_real_escape_string($conn,$_POST["gia"]);
+  $diemxuatphat= mysqli_real_escape_string($conn,$_POST["diemxuatphat"]);
+  $noibat= mysqli_real_escape_string($conn,$_POST["noibat"]);
+  $vungmien= mysqli_real_escape_string($conn,$_POST["vungmien"]);
+  $vanchuyen= mysqli_real_escape_string($conn,$_POST["vanchuyen"]);
+  $khachsan= mysqli_real_escape_string($conn,$_POST["khachsan"]);
+  $images= $_FILES['images']['name'];
+  $sochongoi= mysqli_real_escape_string($conn,$_POST["sochongoi"]);
+  $lichtrinh= mysqli_real_escape_string($conn,$_POST["lichtrinh"]);
+  $ghichu= mysqli_real_escape_string($conn,$_POST["ghichu"]);
+  $socho= mysqli_real_escape_string($conn,$_POST["socho"]);
+  $idvung= mysqli_real_escape_string($conn,$_POST["idvung"]);
+  $sql="INSERT INTO tour (nameTour,ngaykhoihanh,ngayketthuc,gia,diemxuatphat,noibat,vungmien,vanchuyen,khachsan,images,sochongoi,lichtrinh,ghichu,socho,idvung)
+               VALUES('$nameTour','$ngaykhoihanh','$ngayketthuc','$gia','$diemxuatphat','$noibat','$vungmien','$vanchuyen','$khachsan','$images','$sochongoi','$lichtrinh','$ghichu','$socho','$idvung')";
+  $query=mysqli_query($conn,$sql);
+  header("Location: http://localhost:8080/tlu/dulich/admin/index.php?view=tour");
+}
+?>
 <div class="content">
-<form action="xl_add_tour.php" method="post">
+<form method="post">
   <div class="form-group">
     <label for="name" class="col-sm-1">Tiêu đề: </label>
     <div class="col-sm-8" style=" margin-right:300px; margin-bottom:20px"> <input type="nameTour" class="form-control" name="nameTour"></div>
@@ -50,7 +79,7 @@
   <br>
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
-      <input type="submit"  class="btn btn-primary" value="Cập Nhập" >
+      <input type="submit" name="submit" class="btn btn-primary" value="Cập Nhập" >
     </div>
   </div>
 </form>

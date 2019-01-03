@@ -217,5 +217,6 @@ if(isset($_POST["submit"])){
     tongtien = parseInt(gia)*parseInt(soluong);
     $("#tongtien").html(tongtien);
   });
+
 </script>
 </html>

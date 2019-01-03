@@ -24,7 +24,7 @@ if(isset($_POST["submit"])){
   $tongDH=mysqli_real_escape_string($conn,$_POST["tongDH"]);
   $tinhtrang= mysqli_real_escape_string($conn,$_POST["tinhtrang"]);
   $sql="UPDATE  donhang set  name='$name',phoneDH='$phoneDH',emailDH='$emailDH',addressDH='$addressDH',Tenthenganhang='$Tenthenganhang',Masothe='$Masothe',NHH='$NHH',idTour='$idTour',soluong='$soluong',tongDH='$tongDH',tinhtrang='$tinhtrang' where idDH='$idDH'";
-  header("localhost:http://localhost:8080/tlu/dulich/admin/index.php?view=tour");
+  header("Location: http://localhost:8080/tlu/dulich/admin/index.php?view=don");
   $query=mysqli_query($conn,$sql);
   mysqli_close($conn);
 }
