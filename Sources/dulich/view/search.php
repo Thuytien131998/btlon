@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./../public/css/search.css">
+  <link rel="stylesheet" type="text/css" href="./../public/css/search1.css">
 </head> 
 <body>
   <div class="container-fluid">
@@ -45,7 +45,7 @@
                       <div class="input-group">
                         <input type="text" class="form-control" placeholder="Nhập nội dung cần tìm">
                         <div class="input-group-btn">
-                          <button class="btn btn-default" type="submit">
+                          <button class="btn btn-default" type="submit" name="timkiem">
                             <i class="glyphicon glyphicon-search"></i>
                           </button>
                         </div>
@@ -97,8 +97,50 @@
     </div>
     <div class="container">
     <br>
-     
-     
+     <?php
+     $con = mysqli_connect("localhost","root","","btlon"); //mo ra kết nối đến máy chủ
+     if (mysqli_connect_errno())
+     {
+         echo "Failed to connect to MySQL: " . mysqli_connect_error();//không thể kết nối
+     }
+     //đặt bộ kí tự máy khách mặc định là 
+     mysqli_query($con,"SET CHARACTER SET 'utf8'");
+     mysqli_query($con,"SET SESSION collation_connection ='utf8_unicode_ci'");
+     $sreach = $_GET["sreach"];
+     if(empty($sreach)){
+      echo"<p> Yêu cầu nhập dữ liệu vào ô trống</p>";
+    }
+    else{
+      $sql="SELECT * FROM tour Where nameTour LIKE '%$sreach%'";
+      $result=mysqli_query($con,$sql);
+      function gettim()
+	{
+		global $con;
+		$result = mysqli_query($con,"SELECT * FROM tour Where nameTour LIKE '%$sreach%'");
+		$arr=array();
+		while($rows=mysqli_fetch_array($result))
+		{
+			$arr[]=$rows;	
+		}	
+		return $arr;
+  }
+    }
+    $gettim=gettim();
+    if(isset($gettim))foreach($gettim as $value)
+    {
+      ?>
+      <div class="col-sm-4">
+        <div class="hot1">
+          <img src="./../public/images/<?php echo $value["images"]?>" class="img1">
+          <h4 class="text1"><?php echo $value["nameTour"]?></h4><span> Giá: <?php echo $value["gia"]?> vnd</span>
+          <p><?php echo $value["khachsan"]?></p>
+          <p>Khởi hành: <?php echo $value["diemxuatphat"]?></p>
+          <a href="http://localhost:8080/tlu/dulich/view/ta.php/?id=<?php echo $value["idTour"] ?>" class="more">Xem chi tiết>></a> 
+        </div>
+      </div>
+    <?php
+    }
+    ?>
   </div>
   </div>
   </div>

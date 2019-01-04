@@ -12,6 +12,29 @@
   <link rel="stylesheet" type="text/css" href="../../public/css/dat.css" >
 </head>
 <body>
+<?php
+$conn=mysqli_connect('localhost','root','','btlon');
+if(!$conn){
+    die("khong the ket noi".mysqli_connect_error());
+}
+mysqli_set_charset($conn,"utf8");
+if(isset($_POST["submit"])){
+  $name= mysqli_real_escape_string($conn,$_POST["name"]);
+  $Tenthenganhang= mysqli_real_escape_string($conn,$_POST["Tenthenganhang"]);
+  $phoneDH= mysqli_real_escape_string($conn,$_POST["phoneDH"]);
+  $emailDH= mysqli_real_escape_string($conn,$_POST["emailDH"]);
+  $addressDH= mysqli_real_escape_string($conn,$_POST["addressDH"]);
+  $Masothe= mysqli_real_escape_string($conn,$_POST["Masothe"]);
+  $NHH= mysqli_real_escape_string($conn,$_POST["NHH"]);
+  $idTour= $_GET["id"];
+  $soluong= mysqli_real_escape_string($conn,$_POST["soluong"]);
+  echo $soluong;
+  $tongDH= mysqli_real_escape_string($conn,$_POST["tongDH"]);
+  $sql="INSERT INTO donhang VALUES ('8','$name',' $phoneDH','$emailDH','$addressDH','$Tenthenganhang','$Masothe','$NHH','$idTour','$soluong','$tongDH','chưa nhận')";
+  $query=mysqli_query($conn,$sql);
+  header("Location: http://localhost:8080/tlu/dulich/index.php");
+}
+?>
 <div class="container-fluid">
 <div class="header">
           <div>
@@ -82,28 +105,9 @@
         </div>  
 </div>
 <div class="content">
-<?php
-$conn=mysqli_connect('localhost','root','','btlon');
-if(!$conn){
-    die("khong the ket noi".mysqli_connect_error());
-}
-mysqli_set_charset($conn,"utf8");
-if(isset($_POST["submit"])){
-  $name= mysqli_real_escape_string($conn,$_POST["name"]);
-  $Tenthenganhang= mysqli_real_escape_string($conn,$_POST["Tenthenganhang"]);
-  $phoneDH= mysqli_real_escape_string($conn,$_POST["phoneDH"]);
-  $emailDH= mysqli_real_escape_string($conn,$_POST["email"]);
-  $addressDH= mysqli_real_escape_string($conn,$_POST["addressDH"]);
-  $Masothe= mysqli_real_escape_string($conn,$_POST["Masothe"]);
-  $NHH= mysqli_real_escape_string($conn,$_POST["NHH"]);
-  $sql="insert into donhang(name,Tenthenganhang,phoneDH,emailDH,addressDH,Masothe,NHH,tinhtrang)value('$name','$Tenthenganhang','$phoneDH','$emailDH','$addressDH','$Masothe','$NHH','chưa nhận')";
-  echo"Chúc mừng bạn đã đặt vé thành công!";
-  $query=mysqli_query($conn,$sql);
-  mysqli_close($conn);
-}
-?>
+
   <div class="don">
-  <form action="">
+  <form action="" method="post">
     <div class="col-50">
       <h3>Thông Tin</h3>
       <label for="fname"><i class="fa fa-user"></i> Họ và tên</label>
@@ -128,9 +132,7 @@ if(isset($_POST["submit"])){
       </label>
       <input type="submit" value="XÁC NHẬN" class="btn"  name="submit">
     </div>
-  </form>
-  </div>
-  <div class="don">
+    <div class="don">
   <div class="col-25">
       <h4>Thanh toán</h4>
       <hr>
@@ -167,20 +169,20 @@ if(isset($_POST["submit"])){
       <?php
     while($row=mysqli_fetch_assoc($result)){
     ?>
-      <input type="hidden" class="form-control" name="idTour" value="<?php echo $id; ?>">
+      <input type="hidden" class="form-control" name="idTour" value="<?php echo $row['$id']; ?>" text="<?php echo $row['$id']; ?>">
       <div class="col-sm-3">
       <?php
-        echo'<p id=name>'.$row['nameTour'].'</p>';?></div>
+        echo'<p id=name name=nameTour>'.$row['nameTour'].'</p>';?></div>
       <div class="col-sm-3">
       <?php
         echo'<p id=gia>'.$row['gia'].'</p>';?></div>
       <div class="col-sm-3" style="width:10%">
-      <input type="text" id="soluong" name="soluong" value="1" required=""pattern="([0-9]{10})"></div>
+      <input type="text" id="soluong" name="soluong" required=""></div>
       <?php
       
       ?>
-        <div class="col-sm-3" style="margin:0 0 0 190px">
-      <span id=tongtien name="tongDH"><?php echo $tongtien ?></span>
+        <div class="col-sm-3">
+      <input type="text" id=tongtien name="tongDH">
       <?php
       mysqli_close($conn);
       }
@@ -188,6 +190,9 @@ if(isset($_POST["submit"])){
       </div>
       <hr>
       </div>
+  </form>
+  </div>
+ 
 </div>
 <div class="footer">
     <div class="container">
@@ -211,12 +216,20 @@ if(isset($_POST["submit"])){
 </body>
 <script type="text/javascript">
  $( document ).ready(function() {
+    $("#soluong").val("1");
     var tongtien = 0;
     var gia = $("#gia").text(); 
     var soluong = $("#soluong").val();
     tongtien = parseInt(gia)*parseInt(soluong);
-    $("#tongtien").html(tongtien);
+    $("#tongtien").val(tongtien);
   });
 
+  $( "#soluong" ).keyup(function() {
+    var tongtien = 0;
+    var gia = $("#gia").text(); 
+    var soluong = $("#soluong").val();
+    tongtien = parseInt(gia)*parseInt(soluong);
+    $("#tongtien").val(tongtien);
+  });
 </script>
 </html>

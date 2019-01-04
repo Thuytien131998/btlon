@@ -61,3 +61,29 @@ h3{text-align: center; color: rgb(33, 161, 161); text-decoration: underline;}
     background-color: white;
     color: black;
 }
+.hot1{ border: 1px solid rgb(50, 16, 117);
+    border-radius: 15px;
+    margin-bottom: 10px;
+    overflow: auto;
+    float: right;
+}
+.img1{
+    float: left;
+    width: 300px;
+    height: 150px;
+    margin-bottom: 5px;
+}
+h4{text-align: center; }
+span{color: red;
+    float: right;}
+.more{color: navy !important;}
+p{margin-bottom: 0;}
+.l{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+    float: left;
+    padding:0px 13px 0px ;
+  }

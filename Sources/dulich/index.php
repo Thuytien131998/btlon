@@ -38,9 +38,9 @@
                     </a>
                   </div>
                   <div class="col-sm-3">
-                    <form class="navbar-form navbar-left"  action="view/search.php">
+                    <form class="navbar-form navbar-left"  action="view/search.php?<?php $_POST["sreach"] ?>">
                       <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Nhập nội dung cần tìm" >
+                        <input type="text" class="form-control" placeholder="Nhập nội dung cần tìm" name="sreach" >
                         <div class="input-group-btn">
                           <button class="btn btn-default" type="submit" name="submit">
                             <i class="glyphicon glyphicon-search"></i>
